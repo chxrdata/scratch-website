@@ -16,7 +16,7 @@ async function readWorkJSON(filePath) {
     }
 };
 
-readWorkJSON('../assets/work.json')
+readWorkJSON('assets/work.json')
     .then(data => {
 
         // init
