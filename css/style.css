@@ -1,0 +1,108 @@
+:root {
+    --background-color: #f7f3eb;
+    --background-color-accent: #e0dbd1;
+    --primary-color: #121212;
+    --font-secondary: "Geist", sans-serif;
+    --all: #445F35; /* named all to match category names */
+    --dataviz: #79AD3D;
+    --uiux: #FFC217;
+    --publication: #FF7C48;
+    --exhibition: #449af4;
+
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    height: 100dvh;
+    width: 100dvw;
+}
+
+.homescreen-main {
+    display: flex;
+    gap: 20px;
+    height: 100dvh;
+    width: 100dvw;
+    font-family: var(--font-secondary);
+    background-color: var(--background-color);
+}
+
+.homescreen-main h1 {
+    font-size: 1.6rem;
+    font-weight: 500;
+
+}
+
+.homescreen-main p {
+    font-weight: 400;
+}
+
+.homescreen-main .column {
+    flex: 1;
+}
+
+.sitemap-boxes {
+    background-color: var(--background-color);
+    margin: auto;
+    width: 200px;
+    margin-top: 100px;
+    height: 300px;
+}
+
+#treeCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+}
+
+.tree-form-container {
+    position: absolute;
+    width: 100%;
+    max-width: 250px;
+    bottom: 2rem;
+    left: 50%;
+    transform: translate(-50%, 0)
+}
+
+#tr-range-1,
+#tr-range-2 {
+    appearance: none;
+    width: 100%;
+    height: 22px;
+    background-color: var(--background-color);
+    outline: none;
+    border: 1.5px solid var(--primary-color);
+}
+
+#tr-range-1::-webkit-slider-thumb,
+#tr-range-2::-webkit-slider-thumb {
+    appearance: none;
+    width: 30px;
+    height: 22px;
+    background: var(--primary-color);
+    cursor: pointer;
+}
+
+#tr-range-1::-moz-range-thumb,
+#tr-range-2::-moz-range-thumb {
+    appearance: none;
+    width: 30px;
+    height: 22px;
+    background: var(--background-color);
+    cursor: pointer;
+}
+
+#range-label {
+    position: absolute;
+    margin-left: 0.5rem;
+    margin-top: 0.25rem;
+    z-index: 1;
+    color: var(--background-color);
+    mix-blend-mode: difference;
+    pointer-events: none;
+}
+
+form div:nth-of-type(2) {
+    margin-top: 0.4rem;
+}
