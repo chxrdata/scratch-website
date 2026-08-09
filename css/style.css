@@ -3,7 +3,8 @@
     --background-color-accent: #e0dbd1;
     --primary-color: #121212;
     --font-secondary: "Geist", sans-serif;
-    --all: #445F35; /* named all to match category names */
+    --all: #445F35;
+    /* named all to match category names */
     --dataviz: #79AD3D;
     --uiux: #FFC217;
     --publication: #FF7C48;
@@ -105,4 +106,16 @@ body {
 
 form div:nth-of-type(2) {
     margin-top: 0.4rem;
+}
+
+@media screen and (max-width: 767px) {
+    .homescreen-main {
+        flex-direction: column;
+    }
+
+    .tree-form-container {
+        position: absolute;
+        width: 80%;
+        max-width: none;
+    }
 }
