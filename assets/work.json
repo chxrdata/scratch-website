@@ -1,54 +1,54 @@
 [
     {
         "name": "Keepintouch",
-        "tags": ["uiux", "publication"]
+        "tags": ["uiux", "publication", "all"]
     },
     {
         "name": "NYC Free Museums",
-        "tags": ["dataviz", "uiux"]
+        "tags": ["dataviz", "uiux", "all"]
     },
     {
         "name": "Rootshare",
-        "tags": ["dataviz"]
+        "tags": ["dataviz", "all"]
     },
     {
         "name": "Emic Magazine",
-        "tags": ["publication"]
+        "tags": ["publication", "all"]
     },
     {
         "name": "Florida Foraging",
-        "tags": ["publication"]
+        "tags": ["publication", "all"]
     },
     {
         "name": "The Record Revived",
-        "tags": ["exhibition"]
+        "tags": ["exhibition", "all"]
     },
     {
         "name": "Seek App Research Integration",
-        "tags": ["uiux"]
+        "tags": ["uiux", "all"]
     },
     {
         "name": "Climate Week 2025",
-        "tags": ["exhibition"]
+        "tags": ["exhibition", "all"]
     },
     {
         "name": "Butch Typeface",
-        "tags": ["publication"]
+        "tags": ["publication", "all"]
     },
     {
         "name": "Ours Magazine",
-        "tags": ["publication"]
+        "tags": ["publication", "all"]
     },
     {
         "name": "Lives Never Touched",
-        "tags": ["exhibition"]
+        "tags": ["exhibition", "all"]
     },
     {
         "name": "Houseplants Story Map",
-        "tags": ["dataviz"]
+        "tags": ["dataviz", "all"]
     },
     {
         "name": "Ripple Effects",
-        "tags": ["dataviz", "publication"]
+        "tags": ["dataviz", "publication", "all"]
     }
 ]

@@ -60,7 +60,7 @@ body {
 .tree-form-container {
     position: absolute;
     width: 100%;
-    max-width: 250px;
+    max-width: 300px;
     bottom: 2rem;
     left: 50%;
     transform: translate(-50%, 0)
@@ -108,6 +108,45 @@ form div:nth-of-type(2) {
     margin-top: 0.4rem;
 }
 
+.seed-btns-container {
+    margin: auto;
+    margin-top: 1rem;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.seed-btns-container .seed-btn {
+    width: 40px;
+    aspect-ratio: 1;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.seed-btns-container .seed-btn:hover {
+    transform: translateY(-20%);
+}
+
+#tree-all-btn {
+    background-image: url(assets/circle-3.svg);
+}
+
+#tree-dataviz-btn {
+    background-image: url(assets/diamond-3.svg);
+}
+
+#tree-uiux-btn {
+    background-image: url(assets/star-3.svg);
+}
+
+#tree-exhibition-btn {
+    background-image: url(assets/double-3.svg);
+}
+
+#tree-publication-btn {
+    background-image: url(assets/triangle-3.svg);
+}
+
 @media screen and (max-width: 767px) {
     .homescreen-main {
         flex-direction: column;
@@ -117,5 +156,9 @@ form div:nth-of-type(2) {
         position: absolute;
         width: 80%;
         max-width: none;
+    }
+
+    .seed-btns-container {
+        width: 70%;
     }
 }

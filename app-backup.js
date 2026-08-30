@@ -21,20 +21,12 @@ readWorkJSON('assets/work.json')
 
         // init
         const treeSlider1 = document.getElementById('tr-range-1');
-        let treeSlider1Value = treeSlider1.value;
+        let treeSlider1Value = 50;
+
         const treeSlider2 = document.getElementById('tr-range-2');
-        let treeSlider2Value = treeSlider2.value;
-        const treeAllBtn = document.getElementById('tree-all-btn');
-        const treeDatavizBtn = document.getElementById('tree-dataviz-btn');
-        const treeExhibitionBtn = document.getElementById('tree-exhibition-btn');
-        const treeUiuxBtn = document.getElementById('tree-uiux-btn');
-        const treePublicationBtn = document.getElementById('tree-publication-btn');
-        const treeBtns = [treeAllBtn, treeDatavizBtn, treeExhibitionBtn, treeUiuxBtn, treePublicationBtn]
+        let treeSlider2Value = 50;
 
-        let drawTimer;
-        let currentType = 'all';
         let isLoopRunning = true;
-
 
         // tree drawing function
 
@@ -53,45 +45,12 @@ readWorkJSON('assets/work.json')
             }
         }
 
-        //tree drawing function
-
-        async function drawFractal(type) { // async so we can use delay inside
-
-            // set parameters based on type
-
-            let rules = [];
-            let deg = 0;
-            let itMin = 3;
-            let itMax = 6;
-
-            switch (type) {
-                case 'all':
-                    rules = [['F', 'FF'], ['X', 'F-[[X]+X]+F[+FX]-X,F+[[X]-X]-F[-FX]+X']];
-                    deg = 20;
-                    break;
-                case 'dataviz':
-                    rules = [['F', 'FF'], ['X', 'F-[[X]+X]+F[+X]FX,F+[[X]-X]-F[-X]FX']];
-                    deg = 22;
-                    break;
-                case 'exhibition':
-                    rules = [['F', 'FF'], ['X', 'F-F+[[X]+X]-F[+X][-X],F+F-[[X]-X]+F[-X][+X]']];
-                    deg = 18;
-                    break;
-                case 'uiux':
-                    rules = [['F', 'FF'], ['X', 'F[X]+F[-X]-[++X][-X],F[X]-F[+X]+[--X][+X]']];
-                    deg = 20;
-                    break;
-                case 'publication':
-                    rules = [['F', 'FF'], ['X', 'F-[-X+F+X]+[+X-F-X],F+[-X+F+X]-[+X-F-X]']];
-                    deg = 22;
-                    break;
-
-            }
+        async function drawFractal(axiom, rules, deg, itMin, itMax, type) { // async so we can use delay inside
 
             let ang = (deg + 0.2 * (70 - treeSlider1Value)) * (Math.PI / 180); // converts to rad, flips sign, and applies slider value
             const iterations = (Math.floor((0.01 * treeSlider2Value) * (itMax - 1)) + itMin) // mutiplies iterations by sunlight slider, range of itMin - itMax
 
-            let str = 'X';
+            let str = axiom;
             let shapeCoordsArr = [];
             let stochasticArr = [];
             for (const rule of rules) {
@@ -192,14 +151,14 @@ readWorkJSON('assets/work.json')
                 ];
 
 
-                // Count 'F' and 'X' for segment total
+                // Count 'F' for segment total
                 let totalSegments = 0
                 for (let z = 0; z < strSplit.length; z++) {
-                    if (strSplit[z] == 'F' || strSplit[z] == 'X') { totalSegments++ };
+                    if (strSplit[z] == 'F') { totalSegments++ };
                 };
 
                 const timeToDraw = 1.5;
-                let segmentsPerFrame = Math.ceil((totalSegments / (timeToDraw * 62.5))); // sets segmentsPerFrame to value needed to draw in timeToDraw. derived in sketchbook it just works ok
+                let segmentsPerFrame = Math.floor(((totalSegments / timeToDraw) / 40)); // contols speed of drawing, divided by ms in delay
 
                 // run with dis = 1 to get initial height
 
@@ -264,57 +223,13 @@ readWorkJSON('assets/work.json')
                                 xCoord: tx,
                                 yCoord: ty,
                                 currentAng: tr,
+                                currentWidth: strokewidth
                             });
-
-                            // save current state
-
-                            const savedDis = dis;
-                            const savedTr = tr;
-                            const savedAng = ang;
-                            const savedTx = tx;
-                            const savedTy = ty;
-
-                            // draw flower
-                            const typeParamsObj = typeParams.find(param => param.type === type);
-                            dis = typeParamsObj.dis / iterations;
-                            ang = (typeParamsObj.ang) * (Math.PI / 180); // converts to rad
-
-                            for (const char of typeParamsObj.str) {
-                                if (!isLoopRunning) {
-                                    break;
-                                }
-
-                                if (char == 'F') {
-                                    let fromX = tx;
-                                    let fromY = ty;
-                                    tx += dis * Math.cos(tr);
-                                    ty += dis * Math.sin(tr);
-
-                                    ctx.beginPath();
-                                    ctx.moveTo(fromX, fromY); // starts new path at end of old path
-                                    ctx.lineTo(tx, ty);
-                                    ctx.strokeStyle = rootStyles.getPropertyValue('--' + type);
-                                    ctx.lineWidth = strokewidth;
-                                    ctx.stroke();
-
-                                } else if (char == '+') {
-                                    tr += ang;
-                                } else if (char == '-') {
-                                    tr -= ang
-                                }
-                            }
-
-                            // reset to saved
-                            dis = savedDis;
-                            tr = savedTr;
-                            ang = savedAng;
-                            tx = savedTx;
-                            ty = savedTy;
                         };
 
                         segCount++;
                         if (segCount % segmentsPerFrame === 0) {
-                            await delay(16);
+                            await delay(40);
                         }
 
                     } else if (char == '+') {
@@ -322,10 +237,10 @@ readWorkJSON('assets/work.json')
                     } else if (char == '-') {
                         tr -= ang
                     } else if (char == '[') {
-                        strokewidth -= 0.1;
+                        strokewidth -= 0.2;
                         saveStack.push([tx, ty, tr]);
                     } else if (char == ']') {
-                        strokewidth += 0.1;
+                        strokewidth += 0.2;
                         [tx, ty, tr] = saveStack.pop();
                         ctx.moveTo(tx, ty)
                     };
@@ -343,6 +258,47 @@ readWorkJSON('assets/work.json')
                 let xsToLink = [];
                 let xYRangeMin = Math.min(...xLocationsYCoords);
                 let xYRangeMax = Math.min(...xLocationsYCoords) + xLocationsYCoordsSectionSize;
+
+                // run turtle on Xs to draw type-based flowers
+                for (const xLocation of xLocations) {
+                    const typeParamsObj = typeParams.find(param => param.type === type);
+                    dis = typeParamsObj.dis / iterations;
+                    tr = xLocation.currentAng;
+                    ang = (typeParamsObj.ang) * (Math.PI / 180); // converts to rad
+                    tx = xLocation.xCoord;
+                    ty = xLocation.yCoord;
+
+                    for (const char of typeParamsObj.str) {
+                        if (!isLoopRunning) {
+                            break;
+                        }
+
+                        if (char == 'F') {
+                            let fromX = tx;
+                            let fromY = ty;
+                            tx += dis * Math.cos(tr);
+                            ty += dis * Math.sin(tr);
+
+                            ctx.beginPath();
+                            ctx.moveTo(fromX, fromY); // starts new path at end of old path
+                            ctx.lineTo(tx, ty);
+                            ctx.strokeStyle = rootStyles.getPropertyValue('--' + type);
+                            ctx.lineWidth = xLocation.currentWidth;
+                            ctx.stroke();
+
+                            segmentsPerFrame = 10; // make this proportional to iterations.. somehow
+                            segCount++;
+                            if (segCount % segmentsPerFrame === 0) {
+                                await delay(0);
+                            }
+
+                        } else if (char == '+') {
+                            tr += ang;
+                        } else if (char == '-') {
+                            tr -= ang
+                        }
+                    }
+                };
 
                 // add link buttons
                 // change this to draw element in HTML on top of canvas. Also, animate in like fruit
@@ -370,64 +326,48 @@ readWorkJSON('assets/work.json')
 
         };
 
-        // set up cases where trees are drawn
 
+        let fuzzyWeedParams = [['F', 'FF'], ['X', 'F[-X]F[-X]+X']];
+        let stochasticFuzzyWeedParams = [['F', 'FF'], ['X', 'F-[[X]+X]+F[+FX]-X,F+[[X]-X]-F[-FX]+X']];
+        let stochasticArrowWeedParams = [['F', 'FF'], ['X', 'F[+X][-X]FX,F[-X][+X]FX']];
+        let tallSeaweedParams = [['F', 'F[+F]F[-F]F']];
+        let stochasticTallSeaweedParams = [['F', 'F[+F]F[-F]F,F[-F]F[+F]F']];
 
-        function drawToCanvas(type) {
+        let drawTimer;
+
+        function drawToCanvas() {
             isLoopRunning = false;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             clearTimeout(drawTimer);
-            drawTimer = setTimeout(() => { //do this once user has stopped resizing or inputting
+            drawTimer = setTimeout(() => { //do this once user has stopped resizing
                 resizeCanvasToDisplaySize(canvas);
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 isLoopRunning = true
-                drawFractal(type);
-            }, 10);
-        };
-
-        function drawToCanvasDelay(type) {
-            isLoopRunning = false;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            clearTimeout(drawTimer);
-            drawTimer = setTimeout(() => { //do this once user has stopped resizing or inputting
-                resizeCanvasToDisplaySize(canvas);
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                isLoopRunning = true
-                drawFractal(type);
+                drawFractal('X', stochasticFuzzyWeedParams, 22, 2, 5, 'exhibition');
             }, 1000);
         };
 
         window.addEventListener('resize', () => {
-            drawToCanvasDelay(currentType)
+            drawToCanvas()
         })
 
         //on form action behavior
 
         treeSlider1.addEventListener('input', (e) => {
             treeSlider1Value = e.target.value;
-            drawToCanvasDelay(currentType)
+            drawToCanvas()
         });
 
         treeSlider2.addEventListener('input', (e) => {
             treeSlider2Value = e.target.value;
-            drawToCanvasDelay(currentType)
+            drawToCanvas()
         });
-
-        // on seed button click
-
-        for (const treeBtn of treeBtns) {
-            treeBtn.addEventListener('click', (e) => {
-                const btnId = e.target.id
-                const btnType = btnId.slice(btnId.indexOf('-') + 1, btnId.indexOf('-', btnId.indexOf('-') + 1)) // extracts only type name
-                drawToCanvas(btnType);
-            });
-        }
-
 
     });
 
-//TODO:
-// add fruits
-// limit "fruits" to middle range of Y coords?
+// TODO:
+// draw flowers with tree
+// fix timer
+// decide tree forms
 // link clickable buttons
 //add animated intro
