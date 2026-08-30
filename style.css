@@ -154,11 +154,15 @@ form div:nth-of-type(2) {
 
     .tree-form-container {
         position: absolute;
-        width: 80vw;
+        width: 80%;
         max-width: none;
     }
 
     .seed-btns-container {
-        width: 70%;
+        width: 80%;
+    }
+
+    .seed-btns-container .seed-btn {
+        width: 36px;
     }
 }
