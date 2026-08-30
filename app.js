@@ -373,7 +373,7 @@ readWorkJSON('assets/work.json')
         // set up cases where trees are drawn
 
 
-        function drawToCanvas(type) {
+        function drawToCanvas(type, delay) {
             isLoopRunning = false;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             clearTimeout(drawTimer);
@@ -382,35 +382,23 @@ readWorkJSON('assets/work.json')
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 isLoopRunning = true
                 drawFractal(type);
-            }, 10);
-        };
-
-        function drawToCanvasDelay(type) {
-            isLoopRunning = false;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            clearTimeout(drawTimer);
-            drawTimer = setTimeout(() => { //do this once user has stopped resizing or inputting
-                resizeCanvasToDisplaySize(canvas);
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                isLoopRunning = true
-                drawFractal(type);
-            }, 1000);
+            }, delay);
         };
 
         window.addEventListener('resize', () => {
-            drawToCanvasDelay(currentType)
+            drawToCanvas(currentType, 1000)
         })
 
         //on form action behavior
 
         treeSlider1.addEventListener('input', (e) => {
             treeSlider1Value = e.target.value;
-            drawToCanvasDelay(currentType)
+            drawToCanvas(currentType, 1000)
         });
 
         treeSlider2.addEventListener('input', (e) => {
             treeSlider2Value = e.target.value;
-            drawToCanvasDelay(currentType)
+            drawToCanvas(currentType, 1000)
         });
 
         // on seed button click
@@ -419,7 +407,8 @@ readWorkJSON('assets/work.json')
             treeBtn.addEventListener('click', (e) => {
                 const btnId = e.target.id
                 const btnType = btnId.slice(btnId.indexOf('-') + 1, btnId.indexOf('-', btnId.indexOf('-') + 1)) // extracts only type name
-                drawToCanvas(btnType);
+                currentType = btnType;
+                drawToCanvas(currentType, 100); // small delay, just so isLoopRunning can work
             });
         }
 

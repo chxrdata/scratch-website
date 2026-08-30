@@ -154,7 +154,7 @@ form div:nth-of-type(2) {
 
     .tree-form-container {
         position: absolute;
-        width: 80%;
+        width: 80vw;
         max-width: none;
     }
 
