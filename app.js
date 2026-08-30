@@ -30,6 +30,7 @@ readWorkJSON('assets/work.json')
         const treeUiuxBtn = document.getElementById('tree-uiux-btn');
         const treePublicationBtn = document.getElementById('tree-publication-btn');
         const treeBtns = [treeAllBtn, treeDatavizBtn, treeExhibitionBtn, treeUiuxBtn, treePublicationBtn]
+        const treeFormHeader = document.getElementById('form-header');
 
         let drawTimer;
         let currentType = 'all';
@@ -203,7 +204,7 @@ readWorkJSON('assets/work.json')
                     if (strSplit[z] == 'F' || strSplit[z] == 'X') { totalSegments++ };
                 };
 
-                const timeToDraw = 1.5;
+                const timeToDraw = 2;
                 let segmentsPerFrame = Math.ceil((totalSegments / (timeToDraw * 62.5))); // sets segmentsPerFrame to value needed to draw in timeToDraw. derived in sketchbook it just works ok
 
                 // run with dis = 1 to get initial height
@@ -413,7 +414,32 @@ readWorkJSON('assets/work.json')
                 const btnId = e.target.id
                 const btnType = btnId.slice(btnId.indexOf('-') + 1, btnId.indexOf('-', btnId.indexOf('-') + 1)) // extracts only type name
                 currentType = btnType;
-                drawToCanvas(currentType, 100); // small delay, just so isLoopRunning can work
+                let headerText;
+
+                switch (btnType) {
+                    case 'all':
+                        headerText = 'All Work';
+                        break;
+                    case 'dataviz':
+                        headerText = 'Data Visualization';
+                        break;
+                    case 'exhibition':
+                        headerText = 'Exhibition Design';
+                        break;
+                    case 'uiux':
+                        headerText = 'UI/UX';
+                        break;
+                    case 'publication':
+                        headerText = 'Publication Design';
+                        break;
+                }
+
+                treeFormHeader.classList.add('hidden');
+                setTimeout(() => {
+                    treeFormHeader.innerHTML = headerText;
+                    treeFormHeader.classList.remove('hidden');
+                }, 300);
+                drawToCanvas(currentType, 400); // small delay, just so isLoopRunning can work
             });
         }
 

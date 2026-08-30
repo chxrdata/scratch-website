@@ -63,7 +63,16 @@ body {
     max-width: 300px;
     bottom: 2rem;
     left: 50%;
-    transform: translate(-50%, 0)
+    transform: translate(-50%, 0);
+}
+
+#form-header {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+#form-header.hidden {
+    opacity: 0;
 }
 
 #tr-range-1,
