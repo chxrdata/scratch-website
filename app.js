@@ -43,13 +43,18 @@ readWorkJSON('assets/work.json')
         }
 
         function resizeCanvasToDisplaySize(canvas) {
+            const dpr = window.devicePixelRatio || 1;
             const displayWidth = canvas.clientWidth;
             const displayHeight = canvas.clientHeight;
 
+            const targetWidth = Math.round(displayWidth * dpr);
+            const targetHeight = Math.round(displayHeight * dpr);
+
             const needResize = canvas.width !== displayWidth || canvas.height !== displayHeight;
             if (needResize) {
-                canvas.width = displayWidth;
-                canvas.height = displayHeight;
+                canvas.width = targetWidth;
+                canvas.height = targetHeight;
+                ctx.scale(dpr, dpr);
             }
         }
 
@@ -237,7 +242,7 @@ readWorkJSON('assets/work.json')
                 // run to draw
 
                 assignDefaults();
-                dis = (0.9 * canvas.height) / (canvas.height - Math.abs(maxTy)); // get ratio for dis to take up 90% of canvas height
+                dis = (0.9 * canvas.clientHeight) / (canvas.clientHeight - Math.abs(maxTy)); // get ratio for dis to take up 90% of canvas height
 
                 for (const char of strSplit) {
                     if (!isLoopRunning) {

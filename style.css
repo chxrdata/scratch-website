@@ -83,6 +83,7 @@ body {
     height: 22px;
     background: var(--primary-color);
     cursor: pointer;
+    box-shadow: none;
 }
 
 #tr-range-1::-moz-range-thumb,
@@ -92,6 +93,7 @@ body {
     height: 22px;
     background: var(--background-color);
     cursor: pointer;
+    box-shadow: none;
 }
 
 #range-label {
