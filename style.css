@@ -158,6 +158,22 @@ form div:nth-of-type(2) {
     background-image: url(assets/triangle-3.svg);
 }
 
+.work-label {
+    position: absolute;
+    display: block;
+    z-index: 6;
+    font-family: var(--font-secondary);
+    font-size: 0.8rem;
+    color: var(--background-color);
+    width: 300%;
+    transform: translateX(-25%);
+    text-align: center;
+}
+
+.tree-link-btn:hover span {
+    color: var(--primary-color);
+}
+
 @media screen and (max-width: 767px) {
     .homescreen-main {
         flex-direction: column;
