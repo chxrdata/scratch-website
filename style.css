@@ -158,20 +158,55 @@ form div:nth-of-type(2) {
     background-image: url(assets/triangle-3.svg);
 }
 
-.work-label {
+.tree-link-btn {
     position: absolute;
-    display: block;
-    z-index: 6;
-    font-family: var(--font-secondary);
-    font-size: 0.8rem;
-    color: var(--background-color);
-    width: 300%;
-    transform: translateX(-25%);
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    z-index: 2;
+    width: 60px;
+    height: 90px;
+    overflow: visible;
+    cursor: pointer;
 }
 
-.tree-link-btn:hover span {
+.tree-link-btn-icon {
+    transition: transform 0.2s;
+}
+
+.tree-link-btn-label {
+    font-family: var(--font-secondary);
+    font-size: 0.8rem;
     color: var(--primary-color);
+    text-align: center;
+    width: 150%;
+    z-index: 3;
+    transition: transform 0.2s
+}
+
+.tree-link-btn:hover .tree-link-btn-icon {
+    transform: scale(120%);
+}
+
+.tree-link-btn:hover .tree-link-btn-label {
+    transform: translateY(6px);
+}
+
+.tree-link-btn:hover .dataviz-label {
+    background-color: var(--dataviz);
+}
+
+.tree-link-btn:hover .exhibition-label {
+    background-color: var(--exhibition);
+}
+
+.tree-link-btn:hover .uiux-label {
+    background-color: var(--uiux);
+}
+
+.tree-link-btn:hover .publication-label {
+    background-color: var(--publication);
 }
 
 @media screen and (max-width: 767px) {

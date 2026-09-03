@@ -361,48 +361,58 @@ readWorkJSON('assets/work.json')
 
                     let rotation = randomX.currentAng * (180 / Math.PI);
 
-                    let svgInfo;
-                    let highlightColor;
+                    let imgSrc;
                     switch (type) {
                         case 'all':
-                            svgInfo = 'viewBox="0 0 80 80"><defs><style>.cls-1{fill:#445f35;}</style></defs><circle class="cls-1" cx="25" cy="25" r="25"';
-                            // add tag-specific highlight color here
-                            //maybe add these colors with classes so you can change highlight color with hover?
+                            imgSrc = 'assets/circle-2.svg';
                             break;
                         case 'dataviz':
-                            svgInfo = 'viewBox="0 0 36.38 49.91"><defs><style>.cls-1{fill:#79ad3d;}</style></defs><polygon class="cls-1" points="36.38 21.61 18.31 49.91 0 28.3 18.07 0 36.38 21.61"'
-                            highlightColor = rootStyles.getPropertyValue('--dataviz');
+                            imgSrc = 'assets/diamond-2.svg';
                             break;
                         case 'exhibition':
-                            svgInfo = 'viewBox="0 0 40.4 73"><defs><style>.cls-1{fill:#449af4;}</style></defs><path class="cls-1" d="M26.93,35.23c0-4.47-2.18-8.43-5.54-10.88,3.36-2.45,5.54-6.41,5.54-10.88C26.93,6.03,20.9,0,13.47,0S0,6.03,0,13.47c0,4.47,2.18,8.43,5.54,10.88C2.18,26.8,0,30.76,0,35.23c0,7.44,6.03,13.47,13.47,13.47,7.44,0,13.47-6.03,13.47-13.47Z"';
-                            highlightColor = rootStyles.getPropertyValue('--exhibition');
+                            imgSrc = 'assets/double-2.svg';
                             break;
                         case 'uiux':
-                            svgInfo = 'viewBox="0 0 49.19 49.19"><defs><style>.cls-1{fill:#ffc217;}</style></defs><polygon class="cls-1" points="6.53 19.65 3.36 12.18 11.42 11.28 12.41 3.23 19.84 6.48 24.73 0 29.54 6.53 37 3.36 37.9 11.42 45.96 12.41 42.71 19.84 49.19 24.73 42.65 29.54 45.82 37 37.76 37.9 36.77 45.96 29.34 42.71 24.46 49.19 19.65 42.65 12.18 45.82 11.28 37.76 3.23 36.77 6.48 29.34 0 24.46 6.53 19.65"';
-                            highlightColor = rootStyles.getPropertyValue('--uiux');
+                            imgSrc = 'assets/star-2.svg';
                             break;
                         case 'publication':
-                            svgInfo = 'viewBox="0 0 50 43.3"><defs><style>.cls-1{fill:#ff7c48;}</style></defs><polygon class="cls-1" points="25 43.3 50 0 0 0 25 43.3"'
-                            highlightColor = rootStyles.getPropertyValue('--publication');
+                            imgSrc = 'assets/triangle-2.svg';
                             break;
                     }
 
-                    const svgString = `<svg class="${type}-svg-btn" style="transform: rotate(${rotation}deg);" xmlns="http://www.w3.org/2000/svg"${svgInfo}/></svg>`
-                    const btnLabel = `<div class="work-label work-label-${type}"><span style="background-color: ${highlightColor};">${work.name}</span></div>`;
-
                     const newLinkBtn = document.createElement('a');
-                    newLinkBtn.style.position = 'absolute';
                     newLinkBtn.style.top = randomX.yCoord.toString() + 'px';
                     newLinkBtn.style.left = randomX.xCoord.toString() + 'px';
-                    newLinkBtn.style.zIndex = '3';
-                    newLinkBtn.style.width = '40px';
-                    newLinkBtn.style.height = '40px';
-                    newLinkBtn.style.overflow = 'visible';
-                    newLinkBtn.style.filter = 'drop-shadow(0 0 16px rgba(247, 243, 235, 1))'.repeat(4);
                     newLinkBtn.href = work.link;
-                    newLinkBtn.innerHTML = svgString + btnLabel;
-                    newLinkBtn.style.cursor = 'pointer';
                     newLinkBtn.classList.add("tree-link-btn");
+
+                    const btnIcon = document.createElement('div');
+                    btnIcon.style.display = 'flex';
+                    btnIcon.style.justifyContent = 'center';
+                    btnIcon.style.alignItems = 'center';
+                    btnIcon.style.width = '100%';
+                    btnIcon.style.aspectRatio = '2';
+                    btnIcon.style.zIndex = '2';
+                    btnIcon.classList.add("tree-link-btn-icon");
+
+                    const btnIconImg = document.createElement('img');
+                    btnIconImg.style.transform = `rotate(${rotation}deg)`;
+                    btnIconImg.style.filter = ` ${'drop-shadow(0 0 16px rgba(247, 243, 235, 1))'.repeat(4)}`;
+                    btnIconImg.src = imgSrc;
+
+                    btnIcon.appendChild(btnIconImg);
+
+                    const btnLabel = document.createElement('div');
+                    btnLabel.classList.add("tree-link-btn-label");
+
+                    const btnLabelSpan = document.createElement('span');
+                    btnLabelSpan.innerHTML = work.name
+                    btnLabelSpan.classList.add(type + "-label");
+
+                    btnLabel.appendChild(btnLabelSpan);
+
+                    newLinkBtn.appendChild(btnIcon);
+                    newLinkBtn.appendChild(btnLabel);
 
                     treeLinksContainer.appendChild(newLinkBtn);
 
@@ -492,7 +502,9 @@ readWorkJSON('assets/work.json')
     });
 
 //TODO:
-// add fruits
+// change 'X' to something else ffs. Maybe B for bud? E for edge?
 // prevent fruits overlap by creating "boxes" surrounding already generated fruits, if newly generated fruit falls within box pick new random number and try again
 // limit "fruits" to middle range of Y coords?
+// color "all" fruits to their types
+// animate in fruits
 //add animated intro
