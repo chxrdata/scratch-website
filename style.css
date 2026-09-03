@@ -185,6 +185,10 @@ form div:nth-of-type(2) {
     transition: transform 0.2s
 }
 
+.tree-link-btn-label span {
+    background-color: var(--background-color);
+}
+
 .tree-link-btn:hover .tree-link-btn-icon {
     transform: scale(120%);
 }
