@@ -18,13 +18,45 @@
     <canvas id="treeCanvas">
         Your browser does not support the HTML canvas tag.
     </canvas>
+    <div id="intro-animation-container">
+        <div id="intro-label"></div>
+        <div id="intro-animation">
+            <div class="intro-btn" id="intro-all-btn"></div>
+            <div class="intro-btn" id="intro-dataviz-btn"></div>
+            <div class="intro-btn" id="intro-exhibition-btn"></div>
+            <div class="intro-btn" id="intro-uiux-btn"></div>
+            <div class="intro-btn" id="intro-publication-btn"></div>
+        </div>
+    </div>
+    <div id="home-about-mobile">
+        <h1>Del Cro is an information designer exploring the intersection of natural systems and human
+            curiosity.
+        </h1>
+    </div>
     <div class="homescreen-main">
-        <div class="column">
-            <div class="sitemap-boxes">
+        <div class="nav-bar-desktop">
+            <img class="nav-bar-logo" src="assets/logo.svg" alt="Del Cro Logo">
+            <div class="nav-menu-desktop">
+                <a>Work</a>
+                <a>About</a>
+                <a>Resources</a>
             </div>
         </div>
         <div class="column">
-            <div class="tree-form-container">
+            <div id="home-about-desktop">
+                <p>Del Cro is an information designer exploring the intersection of natural systems and human
+                    curiosity.</p>
+                <div class="social-links">
+                    <a class="email-link"></a>
+                    <a class="linkedin-link"></a>
+                    <a class="instagram-link"></a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="column">
+            <div id="tree-form-container">
                 <h1 id="form-header">All Work</h1>
                 <form>
                     <div>
@@ -45,7 +77,9 @@
                 </div>
             </div>
         </div>
-        <div class="column"></div>
+        <div class="column">
+            <div id="home-thumbnail-popup"></div>
+        </div>
     </div>
 
     <script src="app.js"></script>

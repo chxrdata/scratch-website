@@ -2,54 +2,73 @@
     {
         "name": "Keepintouch",
         "tags": ["uiux", "publication", "all"],
-        "link": "https://delcro.co/keepintouch"
+        "link": "https://delcro.co/keepintouch",
+        "img-link": "assets/thumbnails/thumbnail-keepintouch.webp"
     },
     {
         "name": "NYC Free Museums",
-        "tags": ["dataviz", "uiux", "all"]
+        "tags": ["dataviz", "uiux", "all"],
+        "img-link": "assets/thumbnails/thumbnail-freeMuseums.webp"
+        
     },
     {
         "name": "Rootshare",
-        "tags": ["dataviz", "all"]
+        "tags": ["dataviz", "all"],
+        "img-link": "assets/thumbnails/thumbnail-rootshare.webp"
     },
     {
         "name": "Emic Magazine",
-        "tags": ["publication", "all"]
+        "tags": ["publication", "all"],
+        "img-link": "assets/thumbnails/thumbnail-emic.webp"
     },
     {
         "name": "Florida Foraging",
-        "tags": ["publication", "all"]
+        "tags": ["publication", "all"],
+        "img-link": "assets/thumbnails/thumbnail-floridaForaging.webp"
     },
     {
         "name": "The Record Revived",
-        "tags": ["exhibition", "all"]
+        "tags": ["exhibition", "all"],
+        "img-link": "assets/thumbnails/thumbnail-recordRevived.webp"
     },
     {
         "name": "Seek App Research Integration",
-        "tags": ["uiux", "all"]
+        "tags": ["uiux", "all"],
+        "img-link": "assets/thumbnails/thumbnail-seek.webp"
     },
     {
         "name": "Climate Week 2025",
-        "tags": ["exhibition", "all"]
+        "tags": ["exhibition", "all"],
+        "img-link": "assets/thumbnails/thumbnail-climateWeek.webp"
     },
     {
         "name": "Butch Typeface",
-        "tags": ["publication", "all"]
+        "tags": ["publication", "all"],
+        "img-link": "assets/thumbnails/thumbnail-butch.webp"
     },
     {
         "name": "Ours Magazine",
-        "tags": ["publication", "all"]
+        "tags": ["publication", "all"],
+        "img-link": "assets/thumbnails/thumbnail-ours.webp"
     },
     {
         "name": "Lives Never Touched",
-        "tags": ["exhibition", "all"]
+        "tags": ["exhibition", "all"],
+        "img-link": "assets/thumbnails/thumbnail-livesNeverTouched.webp"
     },
     {
         "name": "Houseplants Story Map",
-        "tags": ["dataviz", "all"]
+        "tags": ["dataviz", "all"],
+        "img-link": "assets/thumbnails/thumbnail-houseplantsMap.webp"
     },
     {
         "name": "Ripple Effects",
-        "tags": ["dataviz", "publication", "all"]
+        "tags": ["dataviz", "publication", "all"],
+        "img-link": "assets/thumbnails/thumbnail-alligator.webp"
+    },
+    {
+        "name": "Won't Judge, Will Listen",
+        "tags": ["publication", "all"],
+        "img-link": "assets/thumbnails/thumbnail-wontJudge.webp"
     }
 ]

@@ -1,5 +1,11 @@
 const canvas = document.getElementById("treeCanvas");
 const ctx = canvas.getContext("2d");
+let pastIntro = false;
+let onMobile = false;
+if (window.innerWidth <= 767) {
+    onMobile = true;
+}
+
 async function readWorkJSON(filePath) {
     try {
         const response = await fetch(filePath)
@@ -15,6 +21,90 @@ async function readWorkJSON(filePath) {
         throw error
     }
 };
+
+// intro animation
+
+const introBtnArr = document.querySelectorAll('.intro-btn');
+const introBtnsContainer = document.getElementById('intro-animation');
+const introLabel = document.getElementById('intro-label');
+
+// ease animation pause on hover
+
+const spinAnims = [introBtnsContainer, ...introBtnArr].flatMap(el => el.getAnimations());
+let rate = 1;
+let target = 1;
+let frameId;
+
+function easeRate() {
+    rate += (target - rate) * 0.15; // easing speed
+    if (Math.abs(target - rate) < 0.01) rate = target;
+
+    for (const anim of spinAnims) anim.playbackRate = rate;
+
+    if (rate !== target) frameId = requestAnimationFrame(easeRate);
+}
+
+function setSpin(newTarget) {
+    target = newTarget;
+    cancelAnimationFrame(frameId);
+    frameId = requestAnimationFrame(easeRate);
+}
+
+function arrangeIntroBtns() {
+    const radius = (introBtnsContainer.offsetWidth / 2);
+    let btnNum = 0;
+
+    let halfBtnWidth = '40px';
+    if (window.innerWidth < 400) {
+        halfBtnWidth = '30px'
+    }
+
+    for (const btn of introBtnArr) {
+        const angle = ((btnNum / introBtnArr.length) * 2 * Math.PI) - (Math.PI / 2);
+        btn.style.left = `calc(50% + ${radius * Math.cos(angle)}px - ${halfBtnWidth})`;
+        btn.style.top = `calc(50% + ${radius * Math.sin(angle)}px - ${halfBtnWidth})`;
+        btnNum++;
+    }
+
+}
+
+// apply animation
+
+arrangeIntroBtns();
+
+for (const btn of introBtnArr) {
+    btn.addEventListener('mouseenter', (e) => {
+        setSpin(0);
+
+        const btnId = e.target.id
+        const btnType = btnId.slice(btnId.indexOf('-') + 1, btnId.indexOf('-', btnId.indexOf('-') + 1))
+
+        switch (btnType) {
+            case 'all':
+                introLabel.innerHTML = '<p>All Work</p>'
+                break;
+            case 'dataviz':
+                introLabel.innerHTML = '<p>Data Visualization</p>'
+                break;
+            case 'exhibition':
+                introLabel.innerHTML = '<p>Exhibition Design</p>';
+                break;
+            case 'uiux':
+                introLabel.innerHTML = '<p>UI/UX</p>';
+                break;
+            case 'publication':
+                introLabel.innerHTML = '<p>Publication Design</p>';
+                break;
+        }
+    });
+    btn.addEventListener('mouseleave', () => {
+        setSpin(1)
+
+        introLabel.innerHTML = '';
+    });
+};
+
+// load works and tree drawing
 
 readWorkJSON('assets/work.json')
     .then(data => {
@@ -32,6 +122,7 @@ readWorkJSON('assets/work.json')
         const treeBtns = [treeAllBtn, treeDatavizBtn, treeExhibitionBtn, treeUiuxBtn, treePublicationBtn]
         const treeFormHeader = document.getElementById('form-header');
         const treeLinksContainer = document.getElementById('tree-links-container');
+        const thumbnailPopupContainer = document.getElementById('home-thumbnail-popup');
 
         let drawTimer;
         let currentType = 'all';
@@ -72,32 +163,38 @@ readWorkJSON('assets/work.json')
 
             switch (type) {
                 case 'all':
-                    rules = [['F', 'FF'], ['X', 'F-[[X]+X]+F[+FX]-X,F+[[X]-X]-F[-FX]+X']];
+                    rules = [['F', 'FF'], ['E', 'F-[[E]+E]+F[+FE]-E,F+[[E]-E]-F[-FE]+E']];
                     deg = 20;
                     break;
                 case 'dataviz':
-                    rules = [['F', 'FF'], ['X', 'F-[[X]+X]+F[+X]FX,F+[[X]-X]-F[-X]FX']];
+                    rules = [['F', 'FF'], ['E', 'F-[[E]+E]+F[+E]FE,F+[[E]-E]-F[-E]FE']];
                     deg = 22;
                     break;
                 case 'exhibition':
-                    rules = [['F', 'FF'], ['X', 'F-F+[[X]+X]-F[+X][-X],F+F-[[X]-X]+F[-X][+X]']];
+                    rules = [['F', 'FF'], ['E', 'F-F+[[E]+E]-F[+E][-E],F+F-[[E]-E]+F[-E][+E]']];
                     deg = 18;
                     break;
                 case 'uiux':
-                    rules = [['F', 'FF'], ['X', 'F[X]+F[-X]-[++X][-X],F[X]-F[+X]+[--X][+X]']];
+                    rules = [['F', 'FF'], ['E', 'F[E]+F[-E]-[++E][-E],F[E]-F[+E]+[--E][+E]']];
                     deg = 20;
                     break;
                 case 'publication':
-                    rules = [['F', 'FF'], ['X', 'F-[-X+F+X]+[+X-F-X],F+[-X+F+X]-[+X-F-X]']];
+                    rules = [['F', 'FF'], ['E', 'F-[-E+F+E]+[+E-F-E],F+[-E+F+E]-[+E-F-E]']];
                     deg = 22;
                     break;
 
             }
 
             let ang = (deg + 0.2 * (70 - treeSlider1Value)) * (Math.PI / 180); // converts to rad, flips sign, and applies slider value
-            const iterations = (Math.floor((0.01 * treeSlider2Value) * (itMax - 1)) + itMin) // mutiplies iterations by sunlight slider, range of itMin - itMax
+            let iterations = 5; // fallback
+            if (type == 'all' && treeSlider2Value < 50) {
+                iterations = 5 // so dots actually draw lol
+            } else {
+                iterations = (Math.floor((0.01 * treeSlider2Value) * (itMax - 1)) + itMin) // mutiplies iterations by sunlight slider, range of itMin - itMax
 
-            let str = 'X';
+            };
+
+            let str = 'E';
             let shapeCoordsArr = [];
             let stochasticArr = [];
             for (const rule of rules) {
@@ -147,6 +244,8 @@ readWorkJSON('assets/work.json')
 
                 const strSplit = str.split('');
                 const rootStyles = window.getComputedStyle(document.documentElement);
+                let firstBranchCoords
+                let recordedFirstBranch = false;
                 let strokewidth = 1;
 
                 let tx;
@@ -156,8 +255,8 @@ readWorkJSON('assets/work.json')
                 let saveStack = [];
                 let dis = 1;
                 let segCount = 0;
-                let xLocations = [];
-                let xCount = 0;
+                let eLocations = [];
+                let eCount = 0;
 
                 assignDefaults();
 
@@ -175,34 +274,36 @@ readWorkJSON('assets/work.json')
                         "type": "dataviz",
                         "dis": 10,
                         "ang": 45,
-                        "str": "++F-FF-F---FF+++F-F---FF+++F-F---FF"
+                        "str": "++F-F-F-F-F-F-F-F"
                     },
                     {
                         "type": "uiux",
                         "dis": 10,
-                        "ang": 10,
-                        "str": "++++F+++F----------F+++F----------F+++F----------F+++F----------F++F"
+                        "ang": 45,
+                        "str": "++F-F-F-F-F-F-F-F"
                     },
                     {
                         "type": "publication",
                         "dis": 10,
-                        "ang": 15,
-                        "str": "+++FF-------F-------FF++++++FF-------F-------FF++++++FF-------F-------FF"
+                        "ang": 45,
+                        "str": "++F-F-F-F-F-F-F-F"
                     },
                     {
                         "type": "exhibition",
                         "dis": 10,
-                        "ang": 15,
-                        "str": "++++F-F-F-F--F----F---F--F-F-F-F----------F-F-F-F--F----F---F--F-F-F-F"
+                        "ang": 45,
+                        "str": "++F-F-F-F-F-F-F-F"
                     },
                 ];
 
 
-                // Count 'F' and 'X' for segment total
+                // Count 'F' and 'E' for segment total
                 let totalSegments = 0
                 for (let z = 0; z < strSplit.length; z++) {
-                    if (strSplit[z] == 'F' || strSplit[z] == 'X') { totalSegments++ };
+                    if (strSplit[z] == 'F' || strSplit[z] == 'E') { totalSegments++ };
                 };
+
+                // DRAWING TREE
 
                 const timeToDraw = 1;
                 let segmentsPerFrame = Math.ceil((totalSegments / (timeToDraw * 62.5))); // sets segmentsPerFrame to value needed to draw in timeToDraw. derived in sketchbook it just works ok
@@ -214,7 +315,7 @@ readWorkJSON('assets/work.json')
                         break;
                     }
 
-                    if (char == 'F' || char == 'X') {
+                    if (char == 'F' || char == 'E') {
                         let fromX = tx;
                         let fromY = ty;
                         tx += dis * Math.cos(tr);
@@ -250,7 +351,7 @@ readWorkJSON('assets/work.json')
                         break;
                     }
 
-                    if (char == 'F' || char == 'X') {
+                    if (char == 'F' || char == 'E') {
                         let fromX = tx;
                         let fromY = ty;
                         tx += dis * Math.cos(tr);
@@ -263,10 +364,9 @@ readWorkJSON('assets/work.json')
                         ctx.lineWidth = strokewidth;
                         ctx.stroke();
 
-                        if (char == 'X') {
-                            xCount++;
-                            xLocations.push({
-                                index: xCount,
+                        if (char == 'E') {
+                            eCount++;
+                            eLocations.push({
                                 xCoord: tx,
                                 yCoord: ty,
                                 currentAng: tr,
@@ -299,8 +399,9 @@ readWorkJSON('assets/work.json')
                                     ctx.beginPath();
                                     ctx.moveTo(fromX, fromY); // starts new path at end of old path
                                     ctx.lineTo(tx, ty);
-                                    ctx.strokeStyle = rootStyles.getPropertyValue('--' + type);
+                                    ctx.strokeStyle = rootStyles.getPropertyValue('--all');
                                     ctx.lineWidth = strokewidth;
+                                    ctx.globalAlpha = 0.6;
                                     ctx.stroke();
 
                                 } else if (char == '+') {
@@ -311,6 +412,7 @@ readWorkJSON('assets/work.json')
                             }
 
                             // reset to saved
+                            ctx.globalAlpha = 1;
                             dis = savedDis;
                             tr = savedTr;
                             ang = savedAng;
@@ -328,6 +430,10 @@ readWorkJSON('assets/work.json')
                     } else if (char == '-') {
                         tr -= ang
                     } else if (char == '[') {
+                        if (recordedFirstBranch == false) {
+                            firstBranchCoords = [tx, ty];
+                            recordedFirstBranch = true
+                        }
                         strokewidth -= 0.1;
                         saveStack.push([tx, ty, tr]);
                     } else if (char == ']') {
@@ -340,51 +446,148 @@ readWorkJSON('assets/work.json')
 
                 };
 
-                // once tree is drawn, section 'X' locations based on works of type, then randomly select 'X's to become work links. All others get default flowers
+                // once tree is drawn, section 'E' locations based on works of type, then randomly select 'E's to become work links. All others get default flowers
 
                 const worksOfType = data.filter((work) => work.tags.includes(type));
 
-                const xLocationsYCoords = xLocations.map((xLocation) => xLocation.yCoord);
-                const xLocationsYCoordsSectionSize = (Math.max(...xLocationsYCoords) - Math.min(...xLocationsYCoords)) / worksOfType.length;
-                let xYRangeMin = Math.min(...xLocationsYCoords);
-                let xYRangeMax = Math.min(...xLocationsYCoords) + xLocationsYCoordsSectionSize;
+                // DRAWING BUTTONS:
 
-                // add link buttons
-                // change this to draw element in HTML on top of canvas. Also, animate in like fruit, or maybe just fade in?
+                const linkBtnHeight = 90; // these come from style.css
+                const linkBtnWidth = 60;
+                let outerBoundsRect = {};
+                const formTopBound = document.getElementById('form-header').getBoundingClientRect().top;
+                const padding = 20 // in pixels
 
-                i = 0
-                let rangePadding = 10; // in pixels
+                // define bounds rect differently based on screen size
+                if (onMobile) {
+                    outerBoundsRect = {
+                        bottom: formTopBound - padding - linkBtnHeight,
+                        left: padding,
+                        right: window.innerWidth - padding - linkBtnWidth,
+                        top: padding
+                    };
+                } else {
+                    outerBoundsRect = {
+                        bottom: formTopBound - padding - linkBtnHeight,
+                        left: window.innerWidth / 4 + padding,
+                        right: window.innerWidth - (window.innerWidth / 4) - padding - linkBtnWidth,
+                        top: padding
+                    };
+                }
+
+                const maxOverlapAttempts = 400;
+                let overlapAttempts = 0;
+                let btnRectArr = [];
+
+                // use only E locations that fall above the form and within outerBoundsRect
+                const eLocationsBounded = eLocations
+                    .filter((eLocation) =>
+                        eLocation.yCoord < outerBoundsRect.bottom &&
+                        eLocation.xCoord >= outerBoundsRect.left &&
+                        eLocation.xCoord <= outerBoundsRect.right
+                    );
+
+                const eLocationsYCoords = eLocationsBounded.map((eLocation) => eLocation.yCoord);
+                const eLocationsYCoordsSectionSize = (Math.max(...eLocationsYCoords) - Math.min(...eLocationsYCoords)) / worksOfType.length;
+                let eYRangeMin = Math.max(...eLocationsYCoords) - eLocationsYCoordsSectionSize;
+                let eYRangeMax = Math.max(...eLocationsYCoords);
+                const rangePadding = 10;
 
                 for (const work of worksOfType) {
-                    xRange = xLocations.filter((xLocation) => xLocation.yCoord > (xYRangeMin + rangePadding) && xLocation.yCoord < (xYRangeMax - rangePadding));
-                    randomX = xRange[Math.floor(Math.random() * xRange.length)];
 
-                    let rotation = randomX.currentAng * (180 / Math.PI);
+                    if (!isLoopRunning) {
+                        break;
+                    }
+
+                    //choose location
+
+                    let randomE;
+                    let newRect;
+                    let isOverlapping = false;
+                    overlapAttempts = 0
+
+                    eRange = eLocationsBounded.filter((eLocation) => eLocation.yCoord > (eYRangeMin + rangePadding) && eLocation.yCoord < (eYRangeMax - rangePadding));
+
+                    do {
+                        randomE = eRange[Math.floor(Math.random() * eRange.length)];
+
+                        newRect = {
+                            bottom: randomE.yCoord + linkBtnHeight,
+                            left: randomE.xCoord,
+                            right: randomE.xCoord + linkBtnWidth,
+                            top: randomE.yCoord
+                        };
+
+                        if (overlapAttempts < maxOverlapAttempts) { // only checks overlap if under maxAttempts
+                            overlapAttempts++;
+                            for (const drawnRect of btnRectArr) {
+                                if (!(newRect.right < drawnRect.left || newRect.left > drawnRect.right || newRect.bottom < drawnRect.top || newRect.top > drawnRect.bottom)) {
+                                    isOverlapping = true;
+                                } else {
+                                    isOverlapping = false;
+                                }
+                            };
+                        }
+
+                    } while (isOverlapping && overlapAttempts < maxOverlapAttempts);
+
+                    eYRangeMin -= eLocationsYCoordsSectionSize;
+                    eYRangeMax -= eLocationsYCoordsSectionSize;
+
+                    btnRectArr.push(newRect);
+
+                    //set up HTML
+
+                    const rotation = (((Math.atan2(firstBranchCoords[1] - randomE.yCoord, firstBranchCoords[0] - randomE.xCoord)) * 180) / Math.PI) - 90; // radiate from center. It just works
 
                     let imgSrc;
                     switch (type) {
                         case 'all':
-                            imgSrc = 'assets/circle-2.svg';
+                            switch (work.tags[0]) {
+                                case 'dataviz':
+                                    imgSrc = 'assets/circle-2-green.svg';
+                                    break
+                                case 'exhibition':
+                                    imgSrc = 'assets/circle-2-blue.svg';
+                                    break
+                                case 'uiux':
+                                    imgSrc = 'assets/circle-2-yellow.svg';
+                                    break
+                                case 'publication':
+                                    imgSrc = 'assets/circle-2-orange.svg';
+                                    break
+                            }
                             break;
                         case 'dataviz':
-                            imgSrc = 'assets/diamond-2.svg';
+                            imgSrc = 'assets/diamond-1.svg';
                             break;
                         case 'exhibition':
-                            imgSrc = 'assets/double-2.svg';
+                            imgSrc = 'assets/double-1.svg';
                             break;
                         case 'uiux':
-                            imgSrc = 'assets/star-2.svg';
+                            imgSrc = 'assets/star-1.svg';
                             break;
                         case 'publication':
-                            imgSrc = 'assets/triangle-2.svg';
+                            imgSrc = 'assets/triangle-1.svg';
                             break;
                     }
 
                     const newLinkBtn = document.createElement('a');
-                    newLinkBtn.style.top = randomX.yCoord.toString() + 'px';
-                    newLinkBtn.style.left = randomX.xCoord.toString() + 'px';
+
+                    // centers on location by subtracting half of container size
+                    if (type == 'all') {
+                        newLinkBtn.style.top = (randomE.yCoord - 15).toString() + 'px';
+                        newLinkBtn.style.left = (randomE.xCoord - 15).toString() + 'px';
+                    } else {
+                        newLinkBtn.style.top = (randomE.yCoord - (linkBtnHeight / 2)).toString() + 'px';
+                        newLinkBtn.style.left = (randomE.xCoord - (linkBtnWidth / 2)).toString() + 'px';
+                    }
+
                     newLinkBtn.href = work.link;
                     newLinkBtn.classList.add("tree-link-btn");
+                    if (type == 'all') {
+                        newLinkBtn.classList.add("all-btn")
+                    }
 
                     const btnIcon = document.createElement('div');
                     btnIcon.style.display = 'flex';
@@ -397,9 +600,7 @@ readWorkJSON('assets/work.json')
 
                     const btnIconImg = document.createElement('img');
                     btnIconImg.style.transform = `rotate(${rotation}deg)`;
-                    btnIconImg.style.filter = ` ${'drop-shadow(0 0 16px rgba(247, 243, 235, 1))'.repeat(4)}`;
                     btnIconImg.src = imgSrc;
-
                     btnIcon.appendChild(btnIconImg);
 
                     const btnLabel = document.createElement('div');
@@ -410,22 +611,77 @@ readWorkJSON('assets/work.json')
                     btnLabelSpan.classList.add(type + "-label");
 
                     btnLabel.appendChild(btnLabelSpan);
-
                     newLinkBtn.appendChild(btnIcon);
-                    newLinkBtn.appendChild(btnLabel);
-
+                    if (type !== 'all') {
+                        newLinkBtn.appendChild(btnLabel);
+                    }
                     treeLinksContainer.appendChild(newLinkBtn);
 
-                    xYRangeMin += xLocationsYCoordsSectionSize;
-                    xYRangeMax += xLocationsYCoordsSectionSize;
+                    // animate in
+                    newLinkBtn.animate([
+                        { transform: 'scale(0)' },
+                        { transform: 'scale(1)' }
+                    ], {
+                        duration: 200,
+                        easing: "ease-in",
+                        fill: "forwards"
+                    });
 
+                    btnLabel.animate([
+                        { opacity: '0' },
+                        { opacity: '1' }
+                    ], {
+                        duration: 300,
+                        easing: "ease-in",
+                        fill: "forwards"
+                    });
+
+                    await delay(40);
+
+                    // thumbnail popup on hover
+                    if (Object.hasOwn(work, "img-link")) {
+                        newLinkBtn.addEventListener('mouseenter', (e) => {
+                            thumbnailPopupContainer.style.display = 'block';
+
+                            const img = document.createElement('img');
+                            img.src = work['img-link'];
+
+                            const title = document.createElement('h1');
+                            title.innerHTML = work.name;
+
+                            const tags = document.createElement('div');
+                            const tagsArr = work.tags.filter(item => item !== 'all');
+                            let tagsList = ''
+                            for (const tag of tagsArr) {
+                                switch (tag) {
+                                    case 'dataviz':
+                                        tagsList += '<span class="dataviz-highlight">Data Visualization</span>&ensp;'
+                                        break;
+                                    case 'exhibition':
+                                        tagsList += '<span class="exhibition-highlight">Exhibition Design</span>&ensp;';
+                                        break;
+                                    case 'uiux':
+                                        tagsList += '<span class="uiux-highlight">UI/UX</span>&ensp;';
+                                        break;
+                                    case 'publication':
+                                        tagsList += '<span class="publication-highlight">Publication Design</span>&ensp;';
+                                        break;
+                                }
+                            }
+                            tags.innerHTML = tagsList;
+
+                            thumbnailPopupContainer.appendChild(img);
+                            thumbnailPopupContainer.appendChild(title);
+                            thumbnailPopupContainer.appendChild(tags);
+
+                        });
+                        newLinkBtn.addEventListener('mouseleave', (e) => {
+                            thumbnailPopupContainer.style.display = 'none';
+                            thumbnailPopupContainer.replaceChildren();
+                            thumbnailPopupContainer.style.backgroundImage = '';
+                        });
+                    }
                 }
-
-                while (i < worksOfType.length) {
-                    i++;
-
-
-                };
 
             };
 
@@ -434,20 +690,58 @@ readWorkJSON('assets/work.json')
         // set up cases where trees are drawn
 
         function drawToCanvas(type, delay) {
-            isLoopRunning = false;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            treeLinksContainer.replaceChildren();
-            clearTimeout(drawTimer);
-            drawTimer = setTimeout(() => { //do this once user has stopped resizing or inputting
-                resizeCanvasToDisplaySize(canvas);
+            if (pastIntro === true) { // only draw if user has passed through intro animation
+                isLoopRunning = false;
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                isLoopRunning = true
-                drawFractal(type);
-            }, delay);
+                treeLinksContainer.replaceChildren();
+                clearTimeout(drawTimer);
+                drawTimer = setTimeout(() => { //do this once user has stopped resizing or inputting
+                    resizeCanvasToDisplaySize(canvas);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    isLoopRunning = true
+                    drawFractal(type);
+                }, delay);
+            }
         };
 
+        function drawOnBtnClick(e) {
+            const btnId = e.target.id
+            const btnType = btnId.slice(btnId.indexOf('-') + 1, btnId.indexOf('-', btnId.indexOf('-') + 1)) // extracts only type name
+            currentType = btnType;
+            let headerText;
+
+            switch (btnType) {
+                case 'all':
+                    headerText = 'All Work';
+                    break;
+                case 'dataviz':
+                    headerText = 'Data Visualization';
+                    break;
+                case 'exhibition':
+                    headerText = 'Exhibition Design';
+                    break;
+                case 'uiux':
+                    headerText = 'UI/UX';
+                    break;
+                case 'publication':
+                    headerText = 'Publication Design';
+                    break;
+            }
+
+            treeFormHeader.classList.add('hidden');
+            setTimeout(() => {
+                treeFormHeader.innerHTML = headerText;
+                treeFormHeader.classList.remove('hidden');
+            }, 300);
+            drawToCanvas(currentType, 400); // small delay, just so isLoopRunning can work
+        }
+
         window.addEventListener('resize', () => {
-            drawToCanvas(currentType, 1000)
+            arrangeIntroBtns();
+            drawToCanvas(currentType, 1000);
+            if (window.innerWidth <= 767) {
+                onMobile = true;
+            };
         })
 
         //on form action behavior
@@ -462,49 +756,31 @@ readWorkJSON('assets/work.json')
             drawToCanvas(currentType, 1000)
         });
 
-        // on seed button click
+        // on form seed button click
 
         for (const treeBtn of treeBtns) {
-            treeBtn.addEventListener('click', (e) => {
-                const btnId = e.target.id
-                const btnType = btnId.slice(btnId.indexOf('-') + 1, btnId.indexOf('-', btnId.indexOf('-') + 1)) // extracts only type name
-                currentType = btnType;
-                let headerText;
-
-                switch (btnType) {
-                    case 'all':
-                        headerText = 'All Work';
-                        break;
-                    case 'dataviz':
-                        headerText = 'Data Visualization';
-                        break;
-                    case 'exhibition':
-                        headerText = 'Exhibition Design';
-                        break;
-                    case 'uiux':
-                        headerText = 'UI/UX';
-                        break;
-                    case 'publication':
-                        headerText = 'Publication Design';
-                        break;
-                }
-
-                treeFormHeader.classList.add('hidden');
-                setTimeout(() => {
-                    treeFormHeader.innerHTML = headerText;
-                    treeFormHeader.classList.remove('hidden');
-                }, 300);
-                drawToCanvas(currentType, 400); // small delay, just so isLoopRunning can work
-            });
+            treeBtn.addEventListener('click', (e) => drawOnBtnClick(e));
         }
 
+        // on intro seed btn click
+        for (const btn of introBtnArr) {
+
+            btn.addEventListener('click', (e) => {
+                pastIntro = true;
+
+                const treeFormContainer = document.getElementById('tree-form-container');
+                const desktopAbout = document.getElementById('home-about-desktop');
+                const introAnimationContainer = document.getElementById('intro-animation-container');
+                treeFormContainer.style.opacity = 1;
+                desktopAbout.style.opacity = 1;
+                introAnimationContainer.style.opacity = 0;
+
+                drawOnBtnClick(e);
+            })
+        }
 
     });
 
 //TODO:
-// change 'X' to something else ffs. Maybe B for bud? E for edge?
-// prevent fruits overlap by creating "boxes" surrounding already generated fruits, if newly generated fruit falls within box pick new random number and try again
-// limit "fruits" to middle range of Y coords?
-// color "all" fruits to their types
-// animate in fruits
+// fix animated change of text on mobile
 //add animated intro
