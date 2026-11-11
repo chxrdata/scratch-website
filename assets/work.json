@@ -1,74 +1,367 @@
 [
     {
+        "id": "keepintouch",
+        "link": "keepintouch.html",
         "name": "Keepintouch",
-        "tags": ["uiux", "publication", "all"],
-        "link": "https://delcro.co/keepintouch",
-        "img-link": "assets/thumbnails/thumbnail-keepintouch.webp"
+        "kind": "Email Newsletter",
+        "tags": [
+            "uiux",
+            "publication",
+            "all"
+        ],
+        "img-link": "assets/thumbnails/thumbnail-keepintouch.webp",
+        "img-arr-sm": [
+            "assets/work-images/keepintouch/KIT-1.gif",
+            "assets/work-images/keepintouch/KIT-4.mp4",
+            "assets/work-images/keepintouch/KIT-5.webp",
+            "assets/work-images/keepintouch/KIT-6.webp"
+        ],
+        "img-arr-lg": [
+            "assets/work-images/keepintouch/KIT-2.webp",
+            "assets/work-images/keepintouch/KIT-3.webp",
+            "assets/work-images/keepintouch/KIT-7.mp4"
+        ],
+        "desc-arr": [
+            "Keepintouch is a collaborative weekly email newsletter, created for my graduating class to stay in touch after graduation.",
+            "The newsletter's brand identity was defined by the tagline, 'Despite distance,' as well as early internet aesthetics. Low-res timelapse GIFs of clouds frame bright, pixellated headers, reflecting the newsletter's commitment to connection across both time and changing skies. A limited color palette emphasizes the sections of motion, creating a subtle digital environment as the viewer reads.",
+            "I also designed and developed a website to archive the newsletters, hosted on my github. The website maintained a simple layout focused on content with moments of pixelated motion to encourage interaction.",
+            "While each newsletter would be centered around a written piece by an alumni, this left no place for a dialogue between readers. Drawing on my experience at Gainesville's newspaper, I decided to include two additional sections: reader Q&A and other alumni news. These could be written by alumni any week, not just when they had chosen to write the main newsletter. These sections encouraged a sense of Keepintouch as an active conversation between us rather than a static document."
+        ]
     },
     {
+        "id": "nyc-free",
+        "link": "nyc-free.html",
         "name": "NYC Free Museums",
-        "tags": ["dataviz", "uiux", "all"],
-        "img-link": "assets/thumbnails/thumbnail-freeMuseums.webp"
-        
+        "kind": "Interactive Data Visualization and Website",
+        "tags": [
+            "dataviz",
+            "uiux",
+            "all"
+        ],
+        "img-link": "assets/thumbnails/thumbnail-freeMuseums.webp",
+        "img-arr-sm": [
+            "assets/work-images/nyc-free/nyc-free-2.webp",
+            "assets/work-images/nyc-free/nyc-free-3.webp",
+            "assets/work-images/nyc-free/nyc-free-4.webp"
+        ],
+        "img-arr-lg": [
+            "assets/work-images/nyc-free/nyc-free-5.mp4"
+        ],
+        "desc-arr": [
+            "NYC Free Museums is an interactive web map showing free museums around New York City to bring informal education to every kind of New Yorker. You can view it externally here(LINK).",
+            "The map integrates bright, contrasting colors and a faux monospaced typeface to keep a light, curious tone with an edge of authority. The museum features are set against a desaturated map, placing museums at the top of the  hierarchy while still providing enough information to get around. Animations are used sparingly to give the interaction a playful quality and leave a lasting impression on the user so that they remember the resource.",
+            "The map contains over 150 museums, each with different types, hours, and free programs. To reduce mental load on the user, I developed a robust three-category filter system paired with iconography designed to match the user’s preconceived notions: type colors match common colors associated with museum topics, and days are formatted like a weekly calendar. Advanced filters are concealed in the menu as to not overwhelm the user on load.",
+            "To keep the map accessible, colors have high contrast and feature labels include letters. The map is dynamically coded, designed to resize when the user increases their font size."
+        ]
     },
     {
+        "id": "rootshare",
+        "link": "rootshare.html",
         "name": "Rootshare",
-        "tags": ["dataviz", "all"],
-        "img-link": "assets/thumbnails/thumbnail-rootshare.webp"
+        "kind": "Design Fiction",
+        "tags": [
+            "dataviz",
+            "all"
+        ],
+        "img-link": "assets/thumbnails/thumbnail-rootshare.webp",
+        "img-arr-sm": [
+            "assets/work-images/rootshare/rootshare-5.webp",
+            "assets/work-images/rootshare/rootshare-3.png",
+            "assets/work-images/rootshare/rootshare-1.png",
+            "assets/work-images/rootshare/rootshare-2.png",
+            "assets/work-images/rootshare/rootshare-10.webp"
+        ],
+        "img-arr-lg": [
+            "assets/work-images/rootshare/rootshare-6.webp",
+            "assets/work-images/rootshare/rootshare-7.webp",
+            "assets/work-images/rootshare/rootshare-8.webp",
+            "assets/work-images/rootshare/rootshare-9.webp"
+        ],
+        "desc-arr": [
+            "Rootshare is a fictional device that stores and retrieves binary data from (plant) DNA, intended for external file storage.",
+            "Rootshare was born from investigations into Lindenmayer systems, hydroponic gardening, file structure and storage, and genetic engineering. Notable inspiration came from The Algorithmic Beauty of Plants, Hiding Data in DNA, and Data Garden. The Binary to DNA system is sourced entirely from Hiding Data in DNA. I synthesized this research into a product design and workflow for file storage.",
+            "The device consists of a computer base and removable vase for plant storage that doubles as a touchscreen interface. The design is simple and organic, emphasizing the beauty of the plant’s fractal root structure through the materiality of glass and the placement of the user interface.",
+            "I was honored to showcase this work at the Cade Museum for Creativity & Invention."
+        ]
     },
     {
+        "id": "emic",
+        "link": "emic.html",
         "name": "Emic Magazine",
-        "tags": ["publication", "all"],
-        "img-link": "assets/thumbnails/thumbnail-emic.webp"
+        "kind": "Creative Direction",
+        "tags": [
+            "publication",
+            "all"
+        ],
+        "img-link": "assets/thumbnails/thumbnail-emic.webp",
+        "img-arr-sm": [
+            "assets/work-images/emic/emic-3.webp",
+            "assets/work-images/emic/emic-6.webp",
+            "assets/work-images/emic/emic-7.webp"
+        ],
+        "img-arr-lg": [
+            "assets/work-images/emic/emic-4.webp",
+            "assets/work-images/emic/emic-5.webp",
+            "assets/work-images/emic/emic-2.webp"
+        ],
+        "desc-arr": [
+            "Emic Anthropology Magazine(LINK) is an online and print Arts & Letters magazine showcasing student art and writing submissions as well as editorial pieces, research, and interviews centered around an anthropological topic. For three years, I led the magazine’s creative direction, including launching a rebrand and increasing brand awareness.",
+            "A central issue Emic faced was a lack of brand recognition. Audiences didn't understand what made us different as a magazine, and were therefore hesitant to engage with our content. We solved this issue through executing branding focused on our tagline: 'What does it mean to be human?'",
+            "Our new color palette remained simple, with an off-white and three shades of green. We added Nitti to our typefaces, which provided an academic, objective contrast to our stylized Beasty typeface. Finally, I created the repeating hand motif to complement our brand as a background or pattern. These hands reference the shared humanity of our viewers and contributors, whom we strive to connect to each other and the field of Anthropology.",
+            "To further increase brand awareness, we increased our social media presence, sharing issue-branded posts to keep our viewers in the loop with socials and magazine launches. Our increased presence, combined with our rebrand, had an incredible impact: we gained 200 instagram followers and tripled our launch party turnout for the launch of Stasis."
+        ]
     },
     {
+        "id": "fl-foraging",
+        "link": "fl-foraging.html",
         "name": "Florida Foraging",
-        "tags": ["publication", "all"],
-        "img-link": "assets/thumbnails/thumbnail-floridaForaging.webp"
+        "kind": "Infographic Poster",
+        "tags": [
+            "publication",
+            "all"
+        ],
+        "img-link": "assets/thumbnails/thumbnail-floridaForaging.webp",
+        "img-arr-sm": [
+            "assets/work-images/fl-foraging/forage-2.webp",
+            "assets/work-images/fl-foraging/forage-1.webp"
+        ],
+        "img-arr-lg": [
+            "assets/work-images/fl-foraging/forage-3.webp"
+        ],
+        "desc-arr": [
+            "Florida Foraging is an illustrative infographic showcasing recipes primarily featuring native Florida plants. Meant for the wall of a middle school, the design’s illustration presents foraging as approachable and rewarding, encouraging kids to form a positive relationship with nature.",
+            "The poster employs an illustration style modeled on linocut prints, mirroring the hands-on experience of foraging. A clear textual hierarchy and limited palette keep the infographic from becoming confusing or cluttered.",
+            "I reformatted the information to fit an Instagram post, placing the illustrations front-and-center to increase engagement. The layout crosses slide boundaries, encouraging the viewer to keep scrolling.",
+            "Florida Foraging was awarded Best in Show Junior at the University of Florida’s 2025 Ligature awards (LINK)."
+        ]
     },
     {
+        "id": "record-revived",
+        "link": "record-revived.html",
         "name": "The Record Revived",
-        "tags": ["exhibition", "all"],
-        "img-link": "assets/thumbnails/thumbnail-recordRevived.webp"
+        "kind": "Exhibition Design",
+        "tags": [
+            "exhibition",
+            "all"
+        ],
+        "img-link": "assets/thumbnails/thumbnail-recordRevived.webp",
+        "img-arr-sm": [
+            "assets/work-images/record-revived/record-6.webp",
+            "assets/work-images/record-revived/record-8.webp",
+            "assets/work-images/record-revived/record-1.webp"
+        ],
+        "img-arr-lg": [
+            "assets/work-images/record-revived/record-4.webp",
+            "assets/work-images/record-revived/record-5.webp",
+            "assets/work-images/record-revived/record-3.webp",
+            "assets/work-images/record-revived/record-2.webp",
+            "assets/work-images/record-revived/record-9.webp"
+        ],
+        "desc-arr": [
+            "The Record Revived is a museum exhibition set 300 years in the future, imagining that humanity rediscovers the Voyager Golden Record(LINK). View the full explainer booklet here(LINK).",
+            "I designed the exhibition's form and branding around the Gestalt principle of closure. From an anthropological perspective, closure is not just a design principle — it's human nature to fill in the blanks of our own histories. As guests experience the sounds and sights of the 20th century, each aspect of The Record Revived encourages them to imagine how their present day connects to this distant past."
+        ]
     },
     {
+        "id": "seek",
+        "link": "seek.html",
         "name": "Seek App Research Integration",
-        "tags": ["uiux", "all"],
-        "img-link": "assets/thumbnails/thumbnail-seek.webp"
+        "kind": "App Module",
+        "tags": [
+            "uiux",
+            "all"
+        ],
+        "img-link": "assets/thumbnails/thumbnail-seek.webp",
+        "img-arr-sm": [
+            "assets/work-images/seek/seek-4.webp",
+            "assets/work-images/seek/seek-2.webp",
+            "assets/work-images/seek/seek-5.webp"
+        ],
+        "img-arr-lg": [
+            "assets/work-images/seek/seek-3.mp4"
+        ],
+        "desc-arr": [
+            "The Seek Research Module is a conceptual addition to the plant and animal identification app Seek that makes research approachable and encourages citizen science.",
+            "The module allows users to browse research on identified species. It integrates research papers that use data from the Global Biodiversity Information Facility (GBIF) database, which Seek gives users the opportunity to upload their observations to. In this way, the addition of research papers into the Seek app not only improves research access, but also encourages users to contribute to active research.",
+            "View the full process book here(LINK)."
+        ]
     },
     {
+        "id": "climate-week",
+        "link": "climate-week.html",
         "name": "Climate Week 2025",
-        "tags": ["exhibition", "all"],
-        "img-link": "assets/thumbnails/thumbnail-climateWeek.webp"
+        "kind": "Event Collateral & Wayfinding",
+        "tags": [
+            "exhibition",
+            "all"
+        ],
+        "img-link": "assets/thumbnails/thumbnail-climateWeek.webp",
+        "img-arr-sm": [
+            "assets/work-images/climate-week/climate-1.jpg"
+        ],
+        "img-arr-lg": [
+            "assets/work-images/climate-week/climate-2.mp4",
+            "assets/work-images/climate-week/climate-3.mp4"
+        ],
+        "desc-arr": [
+            "Wayfinding and Event Collateral for the United Nations’ 2025 Climate week integrated visitors with the event venue through textural motion design.",
+            "In my time at the Environmental Defense Fund, I designed signage for the venue welcoming attendees and directing them to various events, to be shown at the event entrance and four standing digital signs interspersed throughout. The wayfinding uses a breathable grid to organize information while incorporating scenic views of planet earth, reminding policymakers what they're working to protect.",
+            "I also created branded name tags and tent cards focusing on clear hierarchy, making use of EDF's custom iconography to give a sense of the organization's domains of policy."
+        ]
     },
     {
+        "id": "butch",
+        "link": "butch.html",
         "name": "Butch Typeface",
-        "tags": ["publication", "all"],
-        "img-link": "assets/thumbnails/thumbnail-butch.webp"
+        "kind": "Modular Typeface",
+        "tags": [
+            "publication",
+            "all"
+        ],
+        "img-link": "assets/thumbnails/thumbnail-butch.webp",
+        "img-arr-sm": [
+            "assets/work-images/butch/butch-2.mp4",
+            "assets/work-images/butch/butch-1.webp"
+        ],
+        "img-arr-lg": [
+            "assets/work-images/butch/butch-6.webp",
+            "assets/work-images/butch/butch-7.webp",
+            "assets/work-images/butch/butch-3.webp"
+        ],
+        "desc-arr": [
+            "Butch is a modular display typeface highlighting Queer designers, using the metaphor of a grid to emphasize the 'building blocks' of both design and Queer history.",
+            "Butch is formed by ten unique blocks, each representing a Queer woman influential to the world of graphic design, from historical figures to young and upcoming designers. Blocks translate the designers’ styles into iconographic vector imagery, coalescing styles from embroidery to web design.",
+            "As part of this project, my cohort collectively designed a zine showcasing each student's typeface.",
+            "I created the inner page template, where I used a grid system with a strong textual hierarchy to create visual interest. The viewer's eye is immediately drawn to the large drop cap and led into the typeface's name and info. If this interests them, they can then view individual characters in an organized grid."
+        ]
     },
     {
+        "id": "ours",
+        "link": "ours.html",
         "name": "Ours Magazine",
-        "tags": ["publication", "all"],
-        "img-link": "assets/thumbnails/thumbnail-ours.webp"
+        "kind": "Visual System",
+        "tags": [
+            "publication",
+            "all"
+        ],
+        "img-link": "assets/thumbnails/thumbnail-ours.webp",
+        "img-arr-sm": [
+            "assets/work-images/ours/ours-1.webp",
+            "assets/work-images/ours/ours-2.webp",
+            "assets/work-images/ours/ours-3.webp"
+        ],
+        "img-arr-lg": [
+            "assets/work-images/ours/ours-4.webp",
+            "assets/work-images/ours/ours-5.webp",
+            "assets/work-images/ours/ours-7.webp",
+            "assets/work-images/ours/ours-6.mp4"
+        ],
+        "desc-arr": [
+            "Ours is a limited run Queer poetry magazine, consisting of four issues themed on time of day: Dawn, Midday, Dusk, and Midnight. View the full style guide here(LINK) and process book here(LINK).",
+            "Ours' visual system is centered on dynamic household objects, used as organic patterns, standalone symbols, or image frames. Each patten is based on a core theme of poetry and paired with poems matching its theme.",
+            "The system derives different versions of the same five objects through rotating 3D models and flattening chosen angles, creating variety yet maintaining consistency.",
+            "Through their simplicity and familiarity, objects welcome readers into an intimate physical and digital space, reconstructing perceived notions of poetry as pretentious or abstract.",
+            "Issues span the course of a day, bringing temporal depth to the space implied by objects. The four magazines utilize color palettes, imagery, and poetry relating to their themes, anchoring their content to concepts relatable but broad."
+        ]
     },
     {
+        "id": "lnt",
+        "link": "lnt.html",
         "name": "Lives Never Touched",
-        "tags": ["exhibition", "all"],
-        "img-link": "assets/thumbnails/thumbnail-livesNeverTouched.webp"
+        "kind": "Exhibition Design",
+        "tags": [
+            "exhibition",
+            "all"
+        ],
+        "img-link": "assets/thumbnails/thumbnail-livesNeverTouched.webp",
+        "img-arr-sm": [
+            "assets/work-images/lnt/lnt-6.webp",
+            "assets/work-images/lnt/lnt-4.webp",
+            "assets/work-images/lnt/lnt-1.webp"
+        ],
+        "img-arr-lg": [
+            "assets/work-images/lnt/lnt-2.mp4"
+        ],
+        "desc-arr": [
+            "Lives Never Touched is an exhibition based around sentimental objects from strangers.",
+            "The exhibition explores the unknown lives of strangers through their forgotten objects paired with motion design and audio. The objects represent stories never fully finished, inviting the viewer to contemplate what can never be known about the lives of those they pass every day.",
+            "Objects are coupled with instrumental music produced commissioned for the project. This music emotionally represents the lives the objects came from in a universal language, speaking for the items' owners in their absence. The full song can only be heard when all objects are interacted with, mirroring how the more one reaches out to new connections, the more full their life will become.",
+            "The collective audio waveform is projected onto the floor in the middle of the room, providing a visual indicator of how full the audio is. The wave begins small and nondescript when only one object is interacted with, but as more are seen, it morphs into a clear waveform, revealing itself to the viewer. Each side of the room also has a waveform for its objects, enhancing the immersive experience.",
+            "The video explains more about how the exhibition is executed."
+        ]
     },
     {
+        "id": "houseplants",
+        "link": "houseplants.html",
         "name": "Houseplants Story Map",
-        "tags": ["dataviz", "all"],
-        "img-link": "assets/thumbnails/thumbnail-houseplantsMap.webp"
+        "kind": "Story Map",
+        "tags": [
+            "dataviz",
+            "all"
+        ],
+        "img-link": "assets/thumbnails/thumbnail-houseplantsMap.webp",
+        "img-arr-sm": [
+            "assets/work-images/houseplants/storymap-2.mp4"
+        ],
+        "img-arr-lg": [
+            "assets/work-images/houseplants/storymap-1.webp"
+        ],
+        "desc-arr": [
+            "I researched and constructed a story map to educate audiences about the invasive potential of houseplants. You can view it externally here(LINK).",
+            "The map maintains a consistent visual system across different mapping softwares, giving content an approachable but authoratative appearance. I also designed a few custom icons to complement the typography and maps.",
+            "I wrote and researched the information for the story map, which involved digging deep into ecosystem databases from multiple countries and singling out Epiprenum aureum as a popular houseplant with a high invasive specimen count."
+        ]
     },
     {
+        "id": "ripple",
+        "link": "ripple.html",
         "name": "Ripple Effects",
-        "tags": ["dataviz", "publication", "all"],
-        "img-link": "assets/thumbnails/thumbnail-alligator.webp"
+        "kind": "Data Visualization",
+        "tags": [
+            "dataviz",
+            "publication",
+            "all"
+        ],
+        "img-link": "assets/thumbnails/thumbnail-alligator.webp",
+        "img-arr-sm": [
+            "https://flo.uri.sh/visualisation/26110839/embed",
+            "https://flo.uri.sh/visualisation/26080808/embed",
+            "https://flo.uri.sh/visualisation/26031467/embed",
+            "https://flo.uri.sh/visualisation/26102303/embed"
+        ],
+        "img-arr-lg": [],
+        "desc-arr": [
+            "Ripple Effects was the Independent Florida Alligator’s(LINK) 2024 special edition on the anniversary of Trump’s 2024 election win, exploring how the administration’s policies have trickled down to the local level.",
+            "I worked with editors to explore the data behind their stories, creating interactive graphics that gave readers context or revealed additional angles of the narrative. Graphics used layout, color, and typography to create a strong sense of informational hierarchy, allowing viewers to quickly glean necessary information while retaining the option to dive deeper into the data if it interests them.",
+            "As well as multiple data graphics, I created a cover that encapsulated Gainesville's sentiments from the presidency's first year. Coupling photography from the local No Kings protest with an imposing angle of the Washington Monument, I visually implied the unrest lying beneath the surface of Gainesville's facade."
+        ]
     },
     {
+        "id": "wont-judge",
+        "link": "wont-judge.html",
         "name": "Won't Judge, Will Listen",
-        "tags": ["publication", "all"],
-        "img-link": "assets/thumbnails/thumbnail-wontJudge.webp"
+        "kind": "Social Ads",
+        "tags": [
+            "publication",
+            "all"
+        ],
+        "img-link": "assets/thumbnails/thumbnail-wontJudge.webp",
+        "img-arr-sm": [
+            "assets/work-images/wont-judge/nami-1.mp4",
+            "assets/work-images/wont-judge/nami-2.mp4",
+            "assets/work-images/wont-judge/nami-3.mp4",
+            "assets/work-images/wont-judge/nami-4.mp4",
+            "assets/work-images/wont-judge/nami-5.mp4",
+            "assets/work-images/wont-judge/nami-6.mp4"
+        ],
+        "img-arr-lg": [
+            "assets/work-images/wont-judge/nami-7.webp",
+            "assets/work-images/wont-judge/nami-8.webp"
+        ],
+        "desc-arr": [
+            "Motion graphics for the NAMI 988 Helpine’s Won’t Judge, Will Listen campaign showed younger audiences that the Helpline was available for purposes beyond severe mental health crises, as well as continued to destigmatize reaching out for mental health advice.",
+            "Graphics kept an upbeat, playful palette and sountrack. Motions were smooth, punctuated with quick bursts of action to keep viewers engaged. Familiar iconography, such as social media posts and text bubbles, was used to play into the conversational theme.",
+            "I created advertisements in English and Spanish for Instagram and Youtube."
+        ]
     }
 ]

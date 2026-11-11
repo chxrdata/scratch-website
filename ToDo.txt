@@ -1,0 +1,26 @@
+HOMEPAGE:
+fix animated change of text on mobile
+fix button size on mobile
+fix all tree not always displaying all works (mobile)
+* save choice as local variable
+* add blurb to list view
+
+WORKPAGE:
+no bottom bar on wont judge??
+add fl alligator ripple cover
+no small image for climate week?
+update seek video
+add description links
+
+Make mobile hero image the texture?
+make changing text work
+after reaching end of intro image text, make images same size as gallery images
+
+ABOUTPAGE:
+Add page
+add text
+add tree
+
+OTHER:
+make resources page
+improve work images

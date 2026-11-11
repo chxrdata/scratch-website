@@ -1,6 +1,11 @@
 const canvas = document.getElementById("treeCanvas");
 const ctx = canvas.getContext("2d");
-let pastIntro = false;
+const whiteCanvas = document.getElementById('treeCanvasWhite');
+const whiteCtx = whiteCanvas.getContext('2d');
+const textureContainer = document.getElementById('texture-container');
+const desktopAbout = document.getElementById('home-about-desktop');
+const toggleViewBtnDesktop = document.getElementById('view-toggle-btn-desktop');
+const toggleViewBtnMobile = document.getElementById('view-toggle-btn-mobile');
 let onMobile = false;
 if (window.innerWidth <= 767) {
     onMobile = true;
@@ -22,11 +27,12 @@ async function readWorkJSON(filePath) {
     }
 };
 
-// intro animation
+// INTRO ANIMATION
 
 const introBtnArr = document.querySelectorAll('.intro-btn');
 const introBtnsContainer = document.getElementById('intro-animation');
 const introLabel = document.getElementById('intro-label');
+const introAnimationContainer = document.getElementById('intro-animation-container');
 
 // ease animation pause on hover
 
@@ -104,10 +110,12 @@ for (const btn of introBtnArr) {
     });
 };
 
-// load works and tree drawing
+// LOAD WORKS, tree drawing, list drawing
 
 readWorkJSON('assets/work.json')
     .then(data => {
+
+        // TREE DRAWING
 
         // init
         const treeSlider1 = document.getElementById('tr-range-1');
@@ -120,13 +128,15 @@ readWorkJSON('assets/work.json')
         const treeUiuxBtn = document.getElementById('tree-uiux-btn');
         const treePublicationBtn = document.getElementById('tree-publication-btn');
         const treeBtns = [treeAllBtn, treeDatavizBtn, treeExhibitionBtn, treeUiuxBtn, treePublicationBtn]
+        const treeFormContainer = document.getElementById('tree-form-container');
         const treeFormHeader = document.getElementById('form-header');
         const treeLinksContainer = document.getElementById('tree-links-container');
-        const thumbnailPopupContainer = document.getElementById('home-thumbnail-popup');
 
         let drawTimer;
-        let currentType = 'all';
         let isLoopRunning = true;
+        if (!(localStorage.getItem("currentType"))) {
+            localStorage.setItem("currentType", "all");
+        };
 
         // tree drawing function
 
@@ -186,6 +196,7 @@ readWorkJSON('assets/work.json')
             }
 
             let ang = (deg + 0.2 * (70 - treeSlider1Value)) * (Math.PI / 180); // converts to rad, flips sign, and applies slider value
+            console.log(ang);
             let iterations = 5; // fallback
             if (type == 'all' && treeSlider2Value < 50) {
                 iterations = 5 // so dots actually draw lol
@@ -296,6 +307,17 @@ readWorkJSON('assets/work.json')
                     },
                 ];
 
+                // set up svg btn icons
+
+                const circleBlue = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><circle fill="#445f35" cx="12.5" cy="12.5" r="12.05"/><circle fill="#449af4" cx="12.5" cy="12.5" r="12.05"/><circle fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".5" cx="12.5" cy="12.5" r="12.05"/></svg>`;
+                const circleGreen = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><circle fill="#445f35" cx="12.5" cy="12.5" r="12.05"/><circle fill="#79ad3d" cx="12.5" cy="12.5" r="12.05"/><circle fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".5" cx="12.5" cy="12.5" r="12.05"/></svg>`;
+                const circleOrange = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><circle fill="#445f35" cx="12.5" cy="12.5" r="12.05"/><circle fill="#ff7c48" cx="12.5" cy="12.5" r="12.05"/><circle fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".5" cx="12.5" cy="12.5" r="12.05"/></svg>`;
+                const circleYellow = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><circle fill="#445f35" cx="12.5" cy="12.5" r="12.05"/><circle fill="#ffc217" cx="12.5" cy="12.5" r="12.05"/><circle fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".5" cx="12.5" cy="12.5" r="12.05"/></svg>`;
+
+                const diamondSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><polygon fill="#79ad3d" stroke="#000" stroke-miterlimit="10" stroke-width=".5" points="50 17.28 45.31 5.12 32.22 26.75 31.28 12.72 20.47 5.45 22.17 31.04 13.03 19.67 0 19.92 20.08 44.88 33.41 44.68 50 17.28"/></svg>`;
+                const doubleSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path fill="#449af4" stroke="#000" stroke-miterlimit="10" stroke-width=".5" d="M32.76,8.23c-2.96,2.85-5.73,6.87-7.99,11.29-1.99-4.49-4.5-8.6-7.26-11.58C10.84.72,5.27,2.84,5.09,12.68c-.18,9.84,5.09,23.67,11.77,30.9,3.51,3.79,6.7,4.99,8.97,3.86,1.65-.49,3.52-1.65,5.53-3.59,7.08-6.83,13.14-20.34,13.52-30.17.38-9.83-5.05-12.27-12.13-5.44Z"/></svg>`;
+                const starSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><polygon fill="#ffc217" stroke="#000" stroke-miterlimit="10" stroke-width=".5" points="10.66 19.39 11.1 6.26 24 8.71 36.62 5.07 38.28 18.09 45.65 28.96 33.77 34.57 25.71 44.93 16.7 35.37 4.35 30.91 10.66 19.39"/></svg>`;
+                const triangleSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><polygon fill="#ff7c48" stroke="#000" stroke-miterlimit="10" stroke-width=".5" points="28.94 6.11 25 29.88 21.06 6.11 .27 16.78 25 41.57 26.66 39.9 49.73 16.78 28.94 6.11"/></svg>`;
 
                 // Count 'F' and 'E' for segment total
                 let totalSegments = 0
@@ -446,11 +468,26 @@ readWorkJSON('assets/work.json')
 
                 };
 
+                // draw white tree for hover state
+
+                whiteCanvas.width = canvas.width;
+                whiteCanvas.height = canvas.height;
+
+                whiteCtx.clearRect(0, 0, whiteCanvas.width, whiteCanvas.height);
+
+                // copy current tree image
+                whiteCtx.drawImage(canvas, 0, 0);
+
+                // recolor tree image
+                whiteCtx.globalCompositeOperation = 'source-in';
+                whiteCtx.fillStyle = '#f7f3eb';
+                whiteCtx.fillRect(0, 0, whiteCanvas.width, whiteCanvas.height);
+
                 // once tree is drawn, section 'E' locations based on works of type, then randomly select 'E's to become work links. All others get default flowers
 
                 const worksOfType = data.filter((work) => work.tags.includes(type));
 
-                // DRAWING BUTTONS:
+                // Drawing buttons
 
                 const linkBtnHeight = 90; // these come from style.css
                 const linkBtnWidth = 60;
@@ -540,35 +577,35 @@ readWorkJSON('assets/work.json')
 
                     const rotation = (((Math.atan2(firstBranchCoords[1] - randomE.yCoord, firstBranchCoords[0] - randomE.xCoord)) * 180) / Math.PI) - 90; // radiate from center. It just works
 
-                    let imgSrc;
+                    let iconSvg;
                     switch (type) {
                         case 'all':
                             switch (work.tags[0]) {
                                 case 'dataviz':
-                                    imgSrc = 'assets/circle-2-green.svg';
+                                    iconSvg = circleGreen;
                                     break
                                 case 'exhibition':
-                                    imgSrc = 'assets/circle-2-blue.svg';
+                                    iconSvg = circleBlue;
                                     break
                                 case 'uiux':
-                                    imgSrc = 'assets/circle-2-yellow.svg';
+                                    iconSvg = circleYellow;
                                     break
                                 case 'publication':
-                                    imgSrc = 'assets/circle-2-orange.svg';
+                                    iconSvg = circleOrange;
                                     break
                             }
                             break;
                         case 'dataviz':
-                            imgSrc = 'assets/diamond-1.svg';
+                            iconSvg = diamondSvg;
                             break;
                         case 'exhibition':
-                            imgSrc = 'assets/double-1.svg';
+                            iconSvg = doubleSvg;
                             break;
                         case 'uiux':
-                            imgSrc = 'assets/star-1.svg';
+                            iconSvg = starSvg;
                             break;
                         case 'publication':
-                            imgSrc = 'assets/triangle-1.svg';
+                            iconSvg = triangleSvg;
                             break;
                     }
 
@@ -598,10 +635,11 @@ readWorkJSON('assets/work.json')
                     btnIcon.style.zIndex = '2';
                     btnIcon.classList.add("tree-link-btn-icon");
 
-                    const btnIconImg = document.createElement('img');
-                    btnIconImg.style.transform = `rotate(${rotation}deg)`;
-                    btnIconImg.src = imgSrc;
-                    btnIcon.appendChild(btnIconImg);
+                    btnIcon.innerHTML = iconSvg;
+                    const btnIconSvg = btnIcon.firstElementChild;
+                    btnIconSvg.style.width = '100%';
+                    btnIconSvg.style.height = 'auto';
+                    btnIconSvg.style.transform = `rotate(${rotation}deg)`;
 
                     const btnLabel = document.createElement('div');
                     btnLabel.classList.add("tree-link-btn-label");
@@ -609,12 +647,16 @@ readWorkJSON('assets/work.json')
                     const btnLabelSpan = document.createElement('span');
                     btnLabelSpan.innerHTML = work.name
                     btnLabelSpan.classList.add(type + "-label");
+                    if (type == 'all') {
+                        btnLabelSpan.classList.add(work.tags[0] + "-label");
+                    }
 
                     btnLabel.appendChild(btnLabelSpan);
                     newLinkBtn.appendChild(btnIcon);
-                    if (type !== 'all') {
-                        newLinkBtn.appendChild(btnLabel);
-                    }
+                    if (type == 'all') {
+                        btnLabel.classList.add('hidden');
+                    };
+                    newLinkBtn.appendChild(btnLabel);
                     treeLinksContainer.appendChild(newLinkBtn);
 
                     // animate in
@@ -638,47 +680,57 @@ readWorkJSON('assets/work.json')
 
                     await delay(40);
 
-                    // thumbnail popup on hover
+                    // darken on hover
                     if (Object.hasOwn(work, "img-link")) {
                         newLinkBtn.addEventListener('mouseenter', (e) => {
-                            thumbnailPopupContainer.style.display = 'block';
 
-                            const img = document.createElement('img');
-                            img.src = work['img-link'];
+                            // change backgroud image
+                            textureContainer.style.backgroundImage = `url(assets/textures/tx-${work.id}.png)`;
+                            textureContainer.style.opacity = 1;
 
-                            const title = document.createElement('h1');
-                            title.innerHTML = work.name;
+                            // turn everything white
+                            treeFormContainer.style.opacity = 0;
+                            desktopAbout.style.opacity = 0;
+                            toggleViewBtnMobile.style.opacity = 0;
 
-                            const tags = document.createElement('div');
-                            const tagsArr = work.tags.filter(item => item !== 'all');
-                            let tagsList = ''
-                            for (const tag of tagsArr) {
-                                switch (tag) {
-                                    case 'dataviz':
-                                        tagsList += '<span class="dataviz-highlight">Data Visualization</span>&ensp;'
-                                        break;
-                                    case 'exhibition':
-                                        tagsList += '<span class="exhibition-highlight">Exhibition Design</span>&ensp;';
-                                        break;
-                                    case 'uiux':
-                                        tagsList += '<span class="uiux-highlight">UI/UX</span>&ensp;';
-                                        break;
-                                    case 'publication':
-                                        tagsList += '<span class="publication-highlight">Publication Design</span>&ensp;';
-                                        break;
+                            canvas.style.opacity = 0;
+                            whiteCanvas.style.opacity = 1;
+
+                            const linkBtns = document.querySelectorAll('.tree-link-btn');
+                            for (const linkBtn of linkBtns) {
+                                if (!(linkBtn.matches(':hover'))) {
+                                    linkBtn.classList.add('white');
                                 }
                             }
-                            tags.innerHTML = tagsList;
 
-                            thumbnailPopupContainer.appendChild(img);
-                            thumbnailPopupContainer.appendChild(title);
-                            thumbnailPopupContainer.appendChild(tags);
+                            // if all work, add nametag
+                            if (localStorage.getItem('currentType') === 'all') {
+                                btnLabel.classList.remove('hidden');
+                            }
 
                         });
                         newLinkBtn.addEventListener('mouseleave', (e) => {
-                            thumbnailPopupContainer.style.display = 'none';
-                            thumbnailPopupContainer.replaceChildren();
-                            thumbnailPopupContainer.style.backgroundImage = '';
+
+                            // reset background image
+                            textureContainer.style.opacity = 0;
+
+                            // return original colors
+                            treeFormContainer.style.opacity = 1;
+                            desktopAbout.style.opacity = 1;
+                            toggleViewBtnMobile.style.opacity = 1;
+
+                            const linkBtns = document.querySelectorAll('.tree-link-btn');
+                            for (const linkBtn of linkBtns) {
+                                linkBtn.classList.remove('white');
+                            }
+
+                            canvas.style.opacity = 1;
+                            whiteCanvas.style.opacity = 0;
+
+                            // if all work, remove nametag
+                            if (localStorage.getItem('currentType') === 'all') {
+                                btnLabel.classList.add('hidden');
+                            }
                         });
                     }
                 }
@@ -690,7 +742,7 @@ readWorkJSON('assets/work.json')
         // set up cases where trees are drawn
 
         function drawToCanvas(type, delay) {
-            if (pastIntro === true) { // only draw if user has passed through intro animation
+            if (localStorage.getItem("pastIntro") === "true") { // only draw if user has passed through intro animation
                 isLoopRunning = false;
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 treeLinksContainer.replaceChildren();
@@ -705,12 +757,22 @@ readWorkJSON('assets/work.json')
         };
 
         function drawOnBtnClick(e) {
-            const btnId = e.target.id
-            const btnType = btnId.slice(btnId.indexOf('-') + 1, btnId.indexOf('-', btnId.indexOf('-') + 1)) // extracts only type name
-            currentType = btnType;
+
+            // check if this is being drawn on a button click, or being drawn if user is past intro
+
+            if (typeof e?.target?.id !== "undefined") {
+                const btnId = e.target.id
+                const btnType = btnId.slice(btnId.indexOf('-') + 1, btnId.indexOf('-', btnId.indexOf('-') + 1)) // extracts only type name
+                localStorage.setItem('currentType', btnType);
+            }
+
+            let localCurrentType = localStorage.getItem('currentType');
+
+            // draw tree
+
             let headerText;
 
-            switch (btnType) {
+            switch (localCurrentType) {
                 case 'all':
                     headerText = 'All Work';
                     break;
@@ -732,13 +794,16 @@ readWorkJSON('assets/work.json')
             setTimeout(() => {
                 treeFormHeader.innerHTML = headerText;
                 treeFormHeader.classList.remove('hidden');
-            }, 300);
-            drawToCanvas(currentType, 400); // small delay, just so isLoopRunning can work
+            }, 200);
+            drawToCanvas(localCurrentType, 400); // small delay, just so isLoopRunning can work
+
+            drawList();
+
         }
 
         window.addEventListener('resize', () => {
             arrangeIntroBtns();
-            drawToCanvas(currentType, 1000);
+            drawToCanvas(localStorage.getItem('currentType'), 1000);
             if (window.innerWidth <= 767) {
                 onMobile = true;
             };
@@ -748,12 +813,12 @@ readWorkJSON('assets/work.json')
 
         treeSlider1.addEventListener('input', (e) => {
             treeSlider1Value = e.target.value;
-            drawToCanvas(currentType, 1000)
+            drawToCanvas(localStorage.getItem('currentType'), 1000)
         });
 
         treeSlider2.addEventListener('input', (e) => {
             treeSlider2Value = e.target.value;
-            drawToCanvas(currentType, 1000)
+            drawToCanvas(localStorage.getItem('currentType'), 1000)
         });
 
         // on form seed button click
@@ -766,21 +831,238 @@ readWorkJSON('assets/work.json')
         for (const btn of introBtnArr) {
 
             btn.addEventListener('click', (e) => {
-                pastIntro = true;
+                localStorage.setItem("pastIntro", "true");
 
-                const treeFormContainer = document.getElementById('tree-form-container');
                 const desktopAbout = document.getElementById('home-about-desktop');
-                const introAnimationContainer = document.getElementById('intro-animation-container');
+                const mobileAbout = document.getElementById('home-about-mobile');
                 treeFormContainer.style.opacity = 1;
                 desktopAbout.style.opacity = 1;
+                mobileAbout.style.opacity = 0;
                 introAnimationContainer.style.opacity = 0;
+                setTimeout(() => {
+                    introAnimationContainer.style.display = 'none';
+                }, 200);
 
                 drawOnBtnClick(e);
             })
         }
 
-    });
+        // LIST VIEW
 
-//TODO:
-// fix animated change of text on mobile
-//add animated intro
+        const listSection = document.getElementById('list-section');
+        const listHeader = document.getElementById('list-header');
+        const listMenu = document.getElementById('list-menu');
+        const listContainer = document.getElementById('list-container');
+        const listBtns = document.querySelectorAll('#list-header-btns span');
+
+        function drawList() {
+
+            let localCurrentType = localStorage.getItem('currentType');
+
+            // fill header text
+
+            let headerText; // this section is copied from tree form header replacement above
+
+            switch (localCurrentType) {
+                case 'all':
+                    headerText = 'All Work';
+                    break;
+                case 'dataviz':
+                    headerText = 'Data Visualization';
+                    break;
+                case 'exhibition':
+                    headerText = 'Exhibition Design';
+                    break;
+                case 'uiux':
+                    headerText = 'UI/UX';
+                    break;
+                case 'publication':
+                    headerText = 'Publication Design';
+                    break;
+            }
+
+            listHeader.classList.add('hidden');
+            listContainer.style.transition = 'none';
+            listContainer.style.opacity = '0';
+            listContainer.style.transform = 'translateY(10px)';
+
+            setTimeout(() => {
+                listHeader.innerHTML = headerText;
+                listHeader.classList.remove('hidden');
+                listContainer.style.transition = 'transform 0.2s ease-in-out, opacity 0.2s ease-in-out';
+                listContainer.style.opacity = '1';
+                listContainer.style.transform = 'translateY(0)';
+            }, 200);
+
+            // create new list elements
+
+            listContainer.replaceChildren();
+
+            const worksOfType = data.filter((work) => work.tags.includes(localStorage.getItem('currentType')));
+            for (const work of worksOfType) {
+
+                const listLinkBtn = document.createElement('a');
+                listLinkBtn.classList.add('list-link-btn');
+                listLinkBtn.href = work.link;
+
+                const title = document.createElement('div');
+                title.classList.add('list-link-title');
+                title.innerText = work.name;
+
+                const subtitle = document.createElement('div');
+                subtitle.classList.add('list-link-subtitle');
+                subtitle.innerText = work.kind;
+
+                let tags = [];
+                for (const tag of work.tags) {
+                    if (tag !== "all") {
+                        tags.push(`<span class="${tag}-highlight">${tag}</span>`);
+                    }
+                }
+                const tagsStr = tags.join("&ensp;");
+                const tagsContainer = document.createElement('div');
+                tagsContainer.classList.add('list-link-tags');
+                tagsContainer.innerHTML = tagsStr;
+
+                listLinkBtn.addEventListener('mouseenter', () => {
+
+                    // turn everything white
+                    // copied from above "turn everything white"
+
+                    textureContainer.style.backgroundImage = `url(assets/textures/tx-${work.id}.png)`;
+                    textureContainer.style.opacity = 1;
+
+                    desktopAbout.style.opacity = 0;
+                    listMenu.style.opacity = 0;
+                    toggleViewBtnMobile.style.opacity = 0;
+                    listLinkBtn.classList.add('white');
+
+                    const listLinkBtns = document.querySelectorAll('.list-link-btn');
+                    for (const b of listLinkBtns) {
+                        if (!(b.matches(':hover'))) {
+                            b.style.opacity = 0;
+                        }
+                    };
+                });
+
+                listLinkBtn.addEventListener('mouseleave', () => {
+
+                    // return original colors
+                    // copied from above "return original colors"
+
+                    textureContainer.style.opacity = 0;
+                    desktopAbout.style.opacity = 1;
+                    listMenu.style.opacity = 1;
+                    toggleViewBtnMobile.style.opacity = 1;
+                    listLinkBtn.classList.remove('white');
+
+                    const listLinkBtns = document.querySelectorAll('.list-link-btn');
+                    for (const b of listLinkBtns) {
+                        b.style.opacity = 1;
+                    };
+                });
+
+                listLinkBtn.append(title, subtitle, tagsContainer);
+                listContainer.append(listLinkBtn);
+
+                // color btns
+
+                for (const b of listBtns) {
+                    b.className = "";
+                    if (b.innerText == localCurrentType) {
+                        b.classList.add(`${localCurrentType}-highlight`);
+                    }
+                }
+
+            }
+        };
+
+        drawList();
+
+        // list menu
+
+        for (const b of listBtns) {
+            b.addEventListener('click', () => {
+                localStorage.setItem('currentType', b.innerText);
+                drawList();
+            })
+        }
+
+        // TOGGLE VIEW
+
+        const toggleBtnTextDesktop = document.querySelector("#view-toggle-btn-desktop span");
+        const toggleBtnTextMobile = document.querySelector("#view-toggle-btn-mobile span");
+
+        function switchView() {
+            if (treeFormContainer.style.display !== "none") {
+
+                listSection.style.display = "flex";
+                setTimeout(() => {
+                    listSection.style.opacity = 1;
+                }, 1);
+
+                treeFormContainer.style.opacity = 0;
+                treeLinksContainer.style.opacity = 0;
+                canvas.style.opacity = 0;
+
+                setTimeout(() => {
+                    treeFormContainer.style.display = "none";
+                    treeLinksContainer.style.display = "none";
+                    canvas.style.display = "none";
+                }, 200);
+
+                toggleBtnTextDesktop.innerText = ' List View';
+                toggleBtnTextMobile.innerText = ' List View';
+
+
+            } else {
+
+                drawOnBtnClick();
+
+                treeFormContainer.style.display = "";
+                treeLinksContainer.style.display = "";
+                canvas.style.display = "";
+
+                setTimeout(() => {
+                    treeFormContainer.style.opacity = 1;
+                    treeLinksContainer.style.opacity = "1";
+                    canvas.style.opacity = 1;
+                }, 1);
+
+                listSection.style.opacity = 0;
+
+                setTimeout(() => {
+                    listSection.style.display = "none";
+                }, 200);
+
+                toggleBtnTextDesktop.innerText = ' Tree View';
+                toggleBtnTextMobile.innerText = ' Tree View';
+
+            }
+        }
+
+        toggleViewBtnDesktop.addEventListener('click', () => {
+            switchView();
+        })
+
+        toggleViewBtnMobile.addEventListener('click', () => {
+            switchView();
+        })
+
+
+        // CHECK PASTINTRO
+
+        if (localStorage.getItem("pastIntro") === "true") {
+            introAnimationContainer.style.display = "none";
+            drawOnBtnClick(localStorage.getItem('currentType'));
+            const mobileAbout = document.getElementById('home-about-mobile');
+            treeFormContainer.style.opacity = 1;
+            desktopAbout.style.opacity = 1;
+            mobileAbout.style.opacity = 0;
+            introAnimationContainer.style.display = 'none';
+            introAnimationContainer.style.opacity = 0;
+        } else {
+            introAnimationContainer.style.opacity = 1; // so that it doesn't show for a brief second on reload
+        };
+
+    });

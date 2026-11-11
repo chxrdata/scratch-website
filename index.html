@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fractal Flowers</title>
+    <title>Del Cro</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Geist:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/axc7dql.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-homepage.css">
 </head>
 
 <body>
@@ -18,6 +20,7 @@
     <canvas id="treeCanvas">
         Your browser does not support the HTML canvas tag.
     </canvas>
+    <canvas id="treeCanvasWhite"></canvas>
     <div id="intro-animation-container">
         <div id="intro-label"></div>
         <div id="intro-animation">
@@ -28,61 +31,77 @@
             <div class="intro-btn" id="intro-publication-btn"></div>
         </div>
     </div>
+    <div id="texture-container"></div>
     <div id="home-about-mobile">
         <h1>Del Cro is an information designer exploring the intersection of natural systems and human
             curiosity.
         </h1>
     </div>
     <div class="homescreen-main">
-        <div class="nav-bar-desktop">
-            <img class="nav-bar-logo" src="assets/logo.svg" alt="Del Cro Logo">
-            <div class="nav-menu-desktop">
-                <a>Work</a>
-                <a>About</a>
-                <a>Resources</a>
-            </div>
-        </div>
-        <div class="column">
+        <div id="home-about-desktop-container">
             <div id="home-about-desktop">
                 <p>Del Cro is an information designer exploring the intersection of natural systems and human
                     curiosity.</p>
-                <div class="social-links">
-                    <a class="email-link"></a>
-                    <a class="linkedin-link"></a>
-                    <a class="instagram-link"></a>
+                <div id="view-toggle-btn-desktop">
+                    <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="-4.21 -0.53 40 20">
+                        <path
+                            d="M15.79,1c6.87,0,12.81,6.45,14.5,8.47-1.69,2.02-7.63,8.47-14.5,8.47S2.98,11.49,1.28,9.47C2.98,7.45,8.92,1,15.79,1h0ZM15.79,0C7.07,0,0,9.47,0,9.47c0,0,7.07,9.47,15.79,9.47s15.79-9.47,15.79-9.47c0,0-7.07-9.47-15.79-9.47h0Z" />
+                        <path
+                            d="M15.79,6.09c1.86,0,3.38,1.52,3.38,3.38s-1.52,3.38-3.38,3.38-3.38-1.52-3.38-3.38,1.52-3.38,3.38-3.38h0ZM15.79,5.09c-2.42,0-4.38,1.96-4.38,4.38s1.96,4.38,4.38,4.38,4.38-1.96,4.38-4.38-1.96-4.38-4.38-4.38h0Z" />
+                    </svg><span> Tree View</span>
                 </div>
 
             </div>
         </div>
 
-        <div class="column">
-            <div id="tree-form-container">
-                <h1 id="form-header">All Work</h1>
-                <form>
-                    <div>
-                        <label id="range-label" for="tr-range-1">Water</label>
-                        <input type="range" id="tr-range-1" name="tr-range-1" min="0" max="100" value="50">
+        <div id="list-section">
+            <div id="list-menu-container">
+                <div id="list-menu">
+                    <h1 id="list-header">All Work</h1>
+                    <div id="list-header-btns">
+                        <span>all</span>
+                        <span>dataviz</span>
+                        <span>exhibition</span>
+                        <span>uiux</span>
+                        <span>publication</span>
                     </div>
-                    <div>
-                        <label id="range-label" for="tr-range-2">Sunlight</label>
-                        <input type="range" id="tr-range-2" name="tr-range-2" min="0" max="100" value="75">
-                    </div>
-                </form>
-                <div class="seed-btns-container">
-                    <div class="seed-btn" id="tree-all-btn"></div>
-                    <div class="seed-btn" id="tree-dataviz-btn"></div>
-                    <div class="seed-btn" id="tree-exhibition-btn"></div>
-                    <div class="seed-btn" id="tree-uiux-btn"></div>
-                    <div class="seed-btn" id="tree-publication-btn"></div>
                 </div>
             </div>
+            <div id="list-container"></div>
         </div>
-        <div class="column">
-            <div id="home-thumbnail-popup"></div>
+        <div id="tree-form-container">
+            <h1 id="form-header">All Work</h1>
+            <form>
+                <div>
+                    <label id="range-label" for="tr-range-1">Water</label>
+                    <input type="range" id="tr-range-1" name="tr-range-1" min="0" max="100" value="50">
+                </div>
+                <div>
+                    <label id="range-label" for="tr-range-2">Sunlight</label>
+                    <input type="range" id="tr-range-2" name="tr-range-2" min="0" max="100" value="75">
+                </div>
+            </form>
+            <div class="seed-btns-container">
+                <div class="seed-btn" id="tree-all-btn"></div>
+                <div class="seed-btn" id="tree-dataviz-btn"></div>
+                <div class="seed-btn" id="tree-exhibition-btn"></div>
+                <div class="seed-btn" id="tree-uiux-btn"></div>
+                <div class="seed-btn" id="tree-publication-btn"></div>
+            </div>
+        </div>
+
+        <div id="view-toggle-btn-mobile">
+            <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="-4.21 -0.53 40 20">
+                <path
+                    d="M15.79,1c6.87,0,12.81,6.45,14.5,8.47-1.69,2.02-7.63,8.47-14.5,8.47S2.98,11.49,1.28,9.47C2.98,7.45,8.92,1,15.79,1h0ZM15.79,0C7.07,0,0,9.47,0,9.47c0,0,7.07,9.47,15.79,9.47s15.79-9.47,15.79-9.47c0,0-7.07-9.47-15.79-9.47h0Z" />
+                <path
+                    d="M15.79,6.09c1.86,0,3.38,1.52,3.38,3.38s-1.52,3.38-3.38,3.38-3.38-1.52-3.38-3.38,1.52-3.38,3.38-3.38h0ZM15.79,5.09c-2.42,0-4.38,1.96-4.38,4.38s1.96,4.38,4.38,4.38,4.38-1.96,4.38-4.38-1.96-4.38-4.38-4.38h0Z" />
+            </svg><span> Tree View</span>
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="script-homepage.js"></script>
+    <script src="script-navbar.js"></script>
 
 </body>
 
