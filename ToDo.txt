@@ -8,9 +8,13 @@ add fl alligator ripple cover
 no small image for climate week?
 update seek video
 add description links
-videos dont autoplay on mobile
+
 video not stretching, check keepintouch
 add sound button to intro images.. ugh
+
+images resizing weird on mobile, not going to edge
+videos dont autoplay on mobile
+add fullscreen toggle for mobile
 
 Make mobile hero image the texture?
 
@@ -20,3 +24,13 @@ Add clear about text btn on mobile?
 OTHER:
 make resources page
 improve work images
+
+PRIORITY:
+Mobile all tree still not working
+mobile hover state doesnt clear.. maybe just remove if on mobile device
+no small image for climate week?
+add description links
+images resizing weird on mobile, not going to edge
+videos dont autoplay on mobile
+add fl alligator ripple cover
+LAUNCH???

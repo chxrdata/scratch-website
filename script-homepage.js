@@ -6,9 +6,13 @@ const textureContainer = document.getElementById('texture-container');
 const desktopAbout = document.getElementById('home-about-desktop');
 const toggleViewBtnDesktop = document.getElementById('view-toggle-btn-desktop');
 const toggleViewBtnMobile = document.getElementById('view-toggle-btn-mobile');
-let onMobile = false;
+let isSmallScreen = false;
 if (window.innerWidth <= 767) {
-    onMobile = true;
+    isSmallScreen = true;
+}
+let isMobile = false;
+if (window.matchMedia("(any-hover:none)").matches) {
+    isMobile = true;
 }
 
 async function readWorkJSON(filePath) {
@@ -495,7 +499,7 @@ readWorkJSON('assets/work.json')
                 const padding = 20 // in pixels
 
                 // define bounds rect differently based on screen size
-                if (onMobile) {
+                if (isSmallScreen) {
                     outerBoundsRect = {
                         bottom: formTopBound - padding - linkBtnHeight,
                         left: padding,
@@ -623,6 +627,9 @@ readWorkJSON('assets/work.json')
                     newLinkBtn.classList.add("tree-link-btn");
                     if (type == 'all') {
                         newLinkBtn.classList.add("all-btn")
+                    }
+                    if (isMobile) {
+                        newLinkBtn.classList.add('mobile');
                     }
 
                     const btnIcon = document.createElement('div');
@@ -823,7 +830,7 @@ readWorkJSON('assets/work.json')
             arrangeIntroBtns();
             drawToCanvas(localStorage.getItem('currentType'), 1000);
             if (window.innerWidth <= 767) {
-                onMobile = true;
+                isSmallScreen = true;
             };
         })
 
