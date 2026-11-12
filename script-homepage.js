@@ -196,7 +196,6 @@ readWorkJSON('assets/work.json')
             }
 
             let ang = (deg + 0.2 * (70 - treeSlider1Value)) * (Math.PI / 180); // converts to rad, flips sign, and applies slider value
-            console.log(ang);
             let iterations = 5; // fallback
             if (type == 'all' && treeSlider2Value < 50) {
                 iterations = 5 // so dots actually draw lol
@@ -747,12 +746,31 @@ readWorkJSON('assets/work.json')
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 treeLinksContainer.replaceChildren();
                 clearTimeout(drawTimer);
-                drawTimer = setTimeout(() => { //do this once user has stopped resizing or inputting
+
+                drawTimer = setTimeout(async () => { //do this once user has stopped resizing or inputting
                     resizeCanvasToDisplaySize(canvas);
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     isLoopRunning = true
-                    drawFractal(type);
+
+                    // catch when buttons can't be drawn and retry full tree draw
+                    const maxRetries = 5;
+                    let attempt = 1;
+                    while (attempt <= maxRetries) {
+                        attempt++
+                        try {
+                            await drawFractal(type);
+                            break;
+                        } catch (err) {
+
+                            if (!isLoopRunning || attempt === maxRetries) break;
+
+                            // clear the failed attempt before trying again
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            treeLinksContainer.replaceChildren();
+                        }
+                    }
                 }, delay);
+
             }
         };
 
@@ -838,6 +856,7 @@ readWorkJSON('assets/work.json')
                 treeFormContainer.style.opacity = 1;
                 desktopAbout.style.opacity = 1;
                 mobileAbout.style.opacity = 0;
+                toggleViewBtnMobile.style.opacity = 1;
                 introAnimationContainer.style.opacity = 0;
                 setTimeout(() => {
                     introAnimationContainer.style.display = 'none';
@@ -1058,6 +1077,7 @@ readWorkJSON('assets/work.json')
             const mobileAbout = document.getElementById('home-about-mobile');
             treeFormContainer.style.opacity = 1;
             desktopAbout.style.opacity = 1;
+            toggleViewBtnMobile.style.opacity = 1;
             mobileAbout.style.opacity = 0;
             introAnimationContainer.style.display = 'none';
             introAnimationContainer.style.opacity = 0;

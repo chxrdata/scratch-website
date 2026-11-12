@@ -166,14 +166,16 @@
         width: 100%;
     }
 
-    #work-intro-mobile {
+    #work-intro-mobile h1, h2, p {
         padding: 0 1rem;
     }
 
-    #intro-info-mobile img {
-        width: 80%;
+    #intro-info-mobile img, video {
+        width: 100%;
+        max-width: 50dvh;
         display: block;
         margin: auto;
+        margin-top: 1rem;
     }
 
     .volume-btn {

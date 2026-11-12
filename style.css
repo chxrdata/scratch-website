@@ -84,6 +84,10 @@ body {
     color: var(--background-color);
 }
 
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
 #nav-btn-mobile {
     display: none;
 }

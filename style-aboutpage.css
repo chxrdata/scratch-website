@@ -34,7 +34,7 @@ a {
     transition: all 0.2s ease-in-out;
 }
 
-#draw-btn:hover {
+#draw-btn:hover, #clear-btn:hover {
     background-color: var(--primary-color);
     color: var(--background-color)
 }

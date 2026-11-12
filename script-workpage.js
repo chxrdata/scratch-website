@@ -59,6 +59,7 @@ readWorkJSON('assets/work.json')
                 video.autoplay = "true";
                 video.loop = "true";
                 video.muted = "true"
+                video.playsInline = "true";
                 videoContainer.appendChild(video);
 
                 if (work.id === 'lnt') { // only add audio controls for videos with audio, which is only lnt currently
@@ -111,8 +112,15 @@ readWorkJSON('assets/work.json')
 
         // set up descriptions
         const introAbout = document.getElementById("intro-about-container");
+        let scrollHandler = null;
 
         function setUpDescriptions() {
+
+            if (scrollHandler) {
+                window.removeEventListener('scroll', scrollHandler);
+                scrollHandler = null;
+            }
+
             if (onMobile === false) {
 
                 introAbout.replaceChildren();
@@ -164,7 +172,8 @@ readWorkJSON('assets/work.json')
                     let currentP = document.getElementById('para-1');
 
                     document.getElementById("intro-about-container");
-                    window.addEventListener('scroll', () => {
+
+                    scrollHandler = () => {
                         const scrollTop = window.scrollY;
 
                         for (const item of ranges) {
@@ -177,14 +186,15 @@ readWorkJSON('assets/work.json')
                                 }
                             }
                         }
+                    }
 
-                    });
+                    window.addEventListener('scroll', scrollHandler);
 
                 }
             }
         }
 
-        setUpDescriptions();
+        window.addEventListener('load', () => setUpDescriptions());
 
         let timer;
         window.addEventListener('resize', () => {
@@ -244,8 +254,13 @@ readWorkJSON('assets/work.json')
 
         // FOOTER
 
-        const workIndex = data.indexOf(work);
+        let workIndex = data.indexOf(work);
         const previousWork = data.at(workIndex - 1);
+
+
+        if (workIndex + 1 === data.length) { // if last work, loop back
+            workIndex = -1;
+        }
         const nextWork = data.at(workIndex + 1);
 
         const footer = document.getElementById("footer");

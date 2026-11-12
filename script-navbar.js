@@ -12,13 +12,17 @@ navBarLogoContainer.appendChild(navrBarLogo);
 
 const navLinks = document.createElement('div');
 navLinks.classList.add('nav-links');
+
 const workLink = document.createElement('a');
 workLink.innerText = 'Work';
+workLink.href = 'index.html';
 const aboutLink = document.createElement('a');
 aboutLink.innerText = 'About';
-const resourcesLink = document.createElement('a');
-resourcesLink.innerText = 'Resources';
-navLinks.append(workLink, aboutLink, resourcesLink);
+aboutLink.href = 'about.html';
+/* const resourcesLink = document.createElement('a');
+resourcesLink.innerText = 'Resources'; */
+
+navLinks.append(workLink, aboutLink);
 
 // mobile menu
 const navBtnMobile = document.createElement('div');
