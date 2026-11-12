@@ -944,7 +944,7 @@ readWorkJSON('assets/work.json')
                 subtitle.classList.add('list-link-subtitle');
                 subtitle.innerText = work.kind;
 
-                const blurb = document.createElement ('p');
+                const blurb = document.createElement('p');
                 blurb.classList.add('list-link-blurb');
                 blurb.innerText = work.blurb;
 
@@ -1000,6 +1000,23 @@ readWorkJSON('assets/work.json')
                             b.style.opacity = 1;
                         };
                     });
+
+                    listContainer.addEventListener('scroll', () => {
+
+                        // do same as mouse leave on scroll
+
+                        textureContainer.style.opacity = 0;
+                        desktopAbout.style.opacity = 1;
+                        listMenu.style.opacity = 1;
+                        toggleViewBtnMobile.style.opacity = 1;
+                        listLinkBtn.classList.remove('white');
+
+                        const listLinkBtns = document.querySelectorAll('.list-link-btn');
+                        for (const b of listLinkBtns) {
+                            b.style.opacity = 1;
+                        };
+                    })
+
                 }
 
                 // color btns

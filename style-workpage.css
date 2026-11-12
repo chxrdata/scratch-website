@@ -57,7 +57,7 @@ a {
 #intro-images img,
 #intro-images video {
     width: 80%;
-    max-height: 80dvh;
+    max-height: 70vh;
     margin-top: 1rem;
     object-fit: contain;
 }

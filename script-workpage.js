@@ -55,11 +55,12 @@ readWorkJSON('assets/work.json')
                 videoContainer.style.position = "relative";
 
                 const video = document.createElement("video");
+                video.autoplay = true;
+                video.loop = true;
+                video.muted = true;
+                video.defaultMuted = true;
+                video.playsInline = true;
                 video.src = link;
-                video.autoplay = "true";
-                video.loop = "true";
-                video.muted = "true"
-                video.playsInline = "true";
                 videoContainer.appendChild(video);
 
                 if (work.id === 'lnt') { // only add audio controls for videos with audio, which is only lnt currently
@@ -101,10 +102,12 @@ readWorkJSON('assets/work.json')
                 introImages.appendChild(img);
             } else if ((link.slice(link.lastIndexOf(".") + 1)) === "mp4" || (link.slice(link.lastIndexOf(".") + 1)) === "mov") {
                 const video = document.createElement("video");
+                video.autoplay = true;
+                video.loop = true;
+                video.muted = true;
+                video.defaultMuted = true;
+                video.playsInline = true;
                 video.src = link;
-                video.autoplay = "true";
-                video.loop = "true";
-                video.muted = "true"
                 introImages.appendChild(video);
             };
 
@@ -208,13 +211,13 @@ readWorkJSON('assets/work.json')
         // MOBILE ONLY
 
         // alternate intro images and text
-        
+
         const shortenedImgs = work["img-arr-sm"];
         const introInfo = document.getElementById("intro-info-mobile");
         let i = 0;
         for (const link of shortenedImgs) {
             i++
-            if (i <= work["desc-arr"].length) {
+            if (i < work["desc-arr"].length) {
                 const p = document.createElement("p");
                 p.innerHTML = work["desc-arr"][i - 1];
                 introInfo.appendChild(p);
@@ -230,10 +233,12 @@ readWorkJSON('assets/work.json')
                 introInfo.appendChild(img);
             } else if ((link.slice(link.lastIndexOf(".") + 1)) === "mp4" || (link.slice(link.lastIndexOf(".") + 1)) === "mov") {
                 const video = document.createElement("video");
+                video.autoplay = true;
+                video.loop = true;
+                video.muted = true;
+                video.defaultMuted = true;
+                video.playsInline = true;
                 video.src = link;
-                video.autoplay = "true";
-                video.loop = "true";
-                video.muted = "true"
                 introInfo.appendChild(video);
             }
 
