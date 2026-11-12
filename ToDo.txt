@@ -25,12 +25,10 @@ OTHER:
 add mouse
 make resources page
 improve work images
+zoom image and video on click
 
 PRIORITY:
-mobile hover state doesnt clear.. maybe just remove if on mobile device
-no small image for climate week?
-add description links
-images resizing weird on mobile, not going to edge
+split climate week img in two
 videos dont autoplay on mobile
 add fl alligator ripple cover
 add blurb to list view

@@ -48,7 +48,7 @@
             "assets/work-images/nyc-free/nyc-free-5.mp4"
         ],
         "desc-arr": [
-            "NYC Free Museums is an interactive web map showing free museums around New York City to bring informal education to every kind of New Yorker. You can view it externally here(LINK).",
+            "NYC Free Museums is an interactive web map showing free museums around New York City to bring informal education to every kind of New Yorker. You can view it externally <a href='https://freemuseumsnyc.com/' target='_blank'>here</a>.",
             "The map integrates bright, contrasting colors and a faux monospaced typeface to keep a light, curious tone with an edge of authority. The museum features are set against a desaturated map, placing museums at the top of the  hierarchy while still providing enough information to get around. Animations are used sparingly to give the interaction a playful quality and leave a lasting impression on the user so that they remember the resource.",
             "The map contains over 150 museums, each with different types, hours, and free programs. To reduce mental load on the user, I developed a robust three-category filter system paired with iconography designed to match the user’s preconceived notions: type colors match common colors associated with museum topics, and days are formatted like a weekly calendar. Advanced filters are concealed in the menu as to not overwhelm the user on load.",
             "To keep the map accessible, colors have high contrast and feature labels include letters. The map is dynamically coded, designed to resize when the user increases their font size."
@@ -105,7 +105,7 @@
             "assets/work-images/emic/emic-2.webp"
         ],
         "desc-arr": [
-            "Emic Anthropology Magazine(LINK) is an online and print Arts & Letters magazine showcasing student art and writing submissions as well as editorial pieces, research, and interviews centered around an anthropological topic. For three years, I led the magazine’s creative direction, including launching a rebrand and increasing brand awareness.",
+            "<a href='https://journals.flvc.org/emic' target='_blank'>Emic Anthropology Magazine</a> is an online and print Arts & Letters magazine showcasing student art and writing submissions as well as editorial pieces, research, and interviews centered around an anthropological topic. For three years, I led the magazine’s creative direction, including launching a rebrand and increasing brand awareness.",
             "A central issue Emic faced was a lack of brand recognition. Audiences didn't understand what made us different as a magazine, and were therefore hesitant to engage with our content. We solved this issue through executing branding focused on our tagline: 'What does it mean to be human?'",
             "Our new color palette remained simple, with an off-white and three shades of green. We added Nitti to our typefaces, which provided an academic, objective contrast to our stylized Beasty typeface. Finally, I created the repeating hand motif to complement our brand as a background or pattern. These hands reference the shared humanity of our viewers and contributors, whom we strive to connect to each other and the field of Anthropology.",
             "To further increase brand awareness, we increased our social media presence, sharing issue-branded posts to keep our viewers in the loop with socials and magazine launches. Our increased presence, combined with our rebrand, had an incredible impact: we gained 200 instagram followers and tripled our launch party turnout for the launch of Stasis."
@@ -132,7 +132,7 @@
             "Florida Foraging is an illustrative infographic showcasing recipes primarily featuring native Florida plants. Meant for the wall of a middle school, the design’s illustration presents foraging as approachable and rewarding, encouraging kids to form a positive relationship with nature.",
             "The poster employs an illustration style modeled on linocut prints, mirroring the hands-on experience of foraging. A clear textual hierarchy and limited palette keep the infographic from becoming confusing or cluttered.",
             "I reformatted the information to fit an Instagram post, placing the illustrations front-and-center to increase engagement. The layout crosses slide boundaries, encouraging the viewer to keep scrolling.",
-            "Florida Foraging was awarded Best in Show Junior at the University of Florida’s 2025 Ligature awards (LINK)."
+            "Florida Foraging was awarded Best in Show Junior at the University of Florida’s 2024 Ligature awards."
         ]
     },
     {
@@ -158,7 +158,7 @@
             "assets/work-images/record-revived/record-9.webp"
         ],
         "desc-arr": [
-            "The Record Revived is a museum exhibition set 300 years in the future, imagining that humanity rediscovers the Voyager Golden Record(LINK). View the full explainer booklet here(LINK).",
+            "The Record Revived is a museum exhibition set 300 years in the future, imagining that humanity rediscovers the <a href='https://science.nasa.gov/mission/voyager/voyager-golden-record-overview/' target='_blank'>Voyager Golden Record</a>. View the full explainer booklet <a href=‘https://drive.google.com/file/d/1jK0MuguZ8UglWcuHu73StXLrY0jgqlpe/view?usp=sharing’ target='_blank'>here</a>.",
             "I designed the exhibition's form and branding around the Gestalt principle of closure. From an anthropological perspective, closure is not just a design principle — it's human nature to fill in the blanks of our own histories. As guests experience the sounds and sights of the 20th century, each aspect of The Record Revived encourages them to imagine how their present day connects to this distant past."
         ]
     },
@@ -183,7 +183,7 @@
         "desc-arr": [
             "The Seek Research Module is a conceptual addition to the plant and animal identification app Seek that makes research approachable and encourages citizen science.",
             "The module allows users to browse research on identified species. It integrates research papers that use data from the Global Biodiversity Information Facility (GBIF) database, which Seek gives users the opportunity to upload their observations to. In this way, the addition of research papers into the Seek app not only improves research access, but also encourages users to contribute to active research.",
-            "View the full process book here(LINK)."
+            "View the full process book <a href=‘https://docs.google.com/presentation/d/1z8VjbmFF11CqwmmiRTFAfoHtDFD4rMcSTzBAF2iZQJs/edit?usp=sharing’ target='_blank'>here</a>."
         ]
     },
     {
@@ -257,7 +257,7 @@
             "assets/work-images/ours/ours-6.mp4"
         ],
         "desc-arr": [
-            "Ours is a limited run Queer poetry magazine, consisting of four issues themed on time of day: Dawn, Midday, Dusk, and Midnight. View the full style guide here(LINK) and process book here(LINK).",
+            "Ours is a limited run Queer poetry magazine, consisting of four issues themed on time of day: Dawn, Midday, Dusk, and Midnight. View the full style guide <a href=‘https://drive.google.com/file/d/1GLGUuq73faMw6TleUWPFPz1HmnJdzt45/view?usp=sharing’ target='_blank'>here</a> and process book <a href=‘https://drive.google.com/file/d/1qwGso5uR3gpCRftTWXpToHpL4GO1Wetx/view?usp=sharing’ target='_blank'>here</a>.",
             "Ours' visual system is centered on dynamic household objects, used as organic patterns, standalone symbols, or image frames. Each patten is based on a core theme of poetry and paired with poems matching its theme.",
             "The system derives different versions of the same five objects through rotating 3D models and flattening chosen angles, creating variety yet maintaining consistency.",
             "Through their simplicity and familiarity, objects welcome readers into an intimate physical and digital space, reconstructing perceived notions of poetry as pretentious or abstract.",
@@ -307,7 +307,7 @@
             "assets/work-images/houseplants/storymap-1.webp"
         ],
         "desc-arr": [
-            "I researched and constructed a story map to educate audiences about the invasive potential of houseplants. You can view it externally here(LINK).",
+            "I researched and constructed a story map to educate audiences about the invasive potential of houseplants. You can view it externally <a href=‘https://storymaps.arcgis.com/stories/07717d6301e04fd0bde6bf3f17d75f4d’ target='_blank'>here</a>.",
             "The map maintains a consistent visual system across different mapping softwares, giving content an approachable but authoratative appearance. I also designed a few custom icons to complement the typography and maps.",
             "I wrote and researched the information for the story map, which involved digging deep into ecosystem databases from multiple countries and singling out Epiprenum aureum as a popular houseplant with a high invasive specimen count."
         ]
@@ -331,7 +331,7 @@
         ],
         "img-arr-lg": [],
         "desc-arr": [
-            "Ripple Effects was the Independent Florida Alligator’s(LINK) 2024 special edition on the anniversary of Trump’s 2024 election win, exploring how the administration’s policies have trickled down to the local level.",
+            "Ripple Effects was the <a href=‘https://www.alligator.org/special/ripple-effects’ target='_blank'>Independent Florida Alligator’s</a> 2024 special edition on the anniversary of Trump’s 2024 election win, exploring how the administration’s policies have trickled down to the local level.",
             "I worked with editors to explore the data behind their stories, creating interactive graphics that gave readers context or revealed additional angles of the narrative. Graphics used layout, color, and typography to create a strong sense of informational hierarchy, allowing viewers to quickly glean necessary information while retaining the option to dive deeper into the data if it interests them.",
             "As well as multiple data graphics, I created a cover that encapsulated Gainesville's sentiments from the presidency's first year. Coupling photography from the local No Kings protest with an imposing angle of the Washington Monument, I visually implied the unrest lying beneath the surface of Gainesville's facade."
         ]

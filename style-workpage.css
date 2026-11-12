@@ -6,6 +6,10 @@
     display: none;
 }
 
+a {
+    color: var(--primary-color);
+}
+
 #work-intro {
     display: flex;
     align-items: flex-start;
@@ -157,25 +161,26 @@
         display: block;
     }
 
-    #hero-image-mobile {
-        width: 100%;
-        margin-top: 60px;
-    }
-
-    #hero-image-mobile img {
-        width: 100%;
-    }
-
-    #work-intro-mobile h1, h2, p {
+    #work-intro-mobile h1,
+    h2,
+    p {
         padding: 0 1rem;
     }
 
-    #intro-info-mobile img, video {
+    #intro-info-mobile img,
+    video {
         width: 100%;
-        max-width: 50dvh;
+        max-height: 90dvh;
         display: block;
         margin: auto;
         margin-top: 1rem;
+    }
+
+    #intro-info-mobile iframe {
+        width: 100%;
+        border: none;
+        margin-top: 1rem;
+        height: 60dvh;
     }
 
     .volume-btn {

@@ -95,7 +95,7 @@ readWorkJSON('assets/work.json')
                 const iframe = document.createElement("iframe");
                 iframe.src = link;
                 introImages.appendChild(iframe);
-            } else if ((link.slice(link.lastIndexOf(".") + 1)) === "webp" || (link.slice(link.lastIndexOf(".") + 1)) === "png") {
+            } else if ((link.slice(link.lastIndexOf(".") + 1)) === "webp" || (link.slice(link.lastIndexOf(".") + 1)) === "png" || (link.slice(link.lastIndexOf(".") + 1)) === "jpg") {
                 const img = document.createElement('img');
                 img.src = link;
                 introImages.appendChild(img);
@@ -129,7 +129,7 @@ readWorkJSON('assets/work.json')
 
                     for (const descr of work["desc-arr"]) {
                         const p = document.createElement("p");
-                        p.textContent = descr;
+                        p.innerHTML = descr;
                         p.style.position = 'relative';
                         introAbout.appendChild(p);
                     }
@@ -207,21 +207,16 @@ readWorkJSON('assets/work.json')
 
         // MOBILE ONLY
 
-        // set up hero image
-        const heroImgContainer = document.getElementById("hero-image-mobile");
-        const heroImg = document.createElement("img");
-        heroImg.src = work["img-arr-sm"][0];
-        heroImgContainer.appendChild(heroImg);
-
         // alternate intro images and text
-        const shortenedImgs = work["img-arr-sm"].slice(1);
+        
+        const shortenedImgs = work["img-arr-sm"];
         const introInfo = document.getElementById("intro-info-mobile");
         let i = 0;
         for (const link of shortenedImgs) {
             i++
             if (i <= work["desc-arr"].length) {
                 const p = document.createElement("p");
-                p.textContent = work["desc-arr"][i - 1];
+                p.innerHTML = work["desc-arr"][i - 1];
                 introInfo.appendChild(p);
             }
 
@@ -229,7 +224,7 @@ readWorkJSON('assets/work.json')
                 const iframe = document.createElement("iframe");
                 iframe.src = link;
                 introInfo.appendChild(iframe);
-            } else if ((link.slice(link.lastIndexOf(".") + 1)) === "webp" || (link.slice(link.lastIndexOf(".") + 1)) === "png") {
+            } else if ((link.slice(link.lastIndexOf(".") + 1)) === "webp" || (link.slice(link.lastIndexOf(".") + 1)) === "png" || (link.slice(link.lastIndexOf(".") + 1)) === "jpg") {
                 const img = document.createElement('img');
                 img.src = link;
                 introInfo.appendChild(img);
@@ -240,7 +235,7 @@ readWorkJSON('assets/work.json')
                 video.loop = "true";
                 video.muted = "true"
                 introInfo.appendChild(video);
-            };
+            }
 
         }
         if (i < work["desc-arr"].length) {
