@@ -32,15 +32,24 @@ readWorkJSON('assets/work.json')
         document.getElementById("intro-subhead").innerText = work.kind;
         document.getElementById("intro-subhead-mobile").innerText = work.kind;
 
+        const introTags = document.getElementById("intro-tags");
+        const introTagsMobile = document.getElementById("intro-tags-mobile");
         let tags = [];
         for (const tag of work.tags) {
             if (tag !== "all") {
-                tags.push(`<span class="${tag}-highlight">${tag}</span>`);
+                const tagEl = document.createElement('a');
+                tagEl.classList.add(`${tag}-highlight`);
+                tagEl.href = 'index.html';
+                tagEl.innerText = tag;
+                tagEl.addEventListener('click', () => {
+                    localStorage.setItem('currentType', tag)
+                })
+
+                introTags.appendChild(tagEl.cloneNode(true));
+
+                introTagsMobile.appendChild(tagEl);
             }
         }
-        const tagsStr = tags.join("&ensp;");
-        document.getElementById("intro-tags").innerHTML = tagsStr;
-        document.getElementById("intro-tags-mobile").innerHTML = tagsStr;
 
         // set up large images
         const galleryImages = document.getElementById("work-gallery");

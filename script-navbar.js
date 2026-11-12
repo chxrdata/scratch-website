@@ -6,7 +6,7 @@ navBarLogoContainer.href = 'index.html';
 navBarLogoContainer.id = 'nav-bar-logo-container'
 const navrBarLogo = document.createElement('img');
 navrBarLogo.id = 'nav-bar-logo';
-navrBarLogo.src = 'assets/logo.svg';
+navrBarLogo.src = 'assets/logo.webp';
 navBarLogoContainer.alt = 'Del Cro Logo';
 navBarLogoContainer.appendChild(navrBarLogo);
 
@@ -19,10 +19,11 @@ workLink.href = 'index.html';
 const aboutLink = document.createElement('a');
 aboutLink.innerText = 'About';
 aboutLink.href = 'about.html';
-/* const resourcesLink = document.createElement('a');
-resourcesLink.innerText = 'Resources'; */
+const resourcesLink = document.createElement('a');
+resourcesLink.innerText = 'Resources'
+resourcesLink.href = 'resources.html';
 
-navLinks.append(workLink, aboutLink);
+navLinks.append(workLink, aboutLink, resourcesLink);
 
 // mobile menu
 const navBtnMobile = document.createElement('div');

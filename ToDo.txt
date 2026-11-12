@@ -20,11 +20,13 @@ improve work images
 zoom image and video on click
 
 PRIORITY:
-save list or tree preference as local variable
-make tags on workpages clickable
+tags on work pages set current type to second tag, not first
+in text links aren't working on work pages desktop
+stop images from resizing on scroll on mobile..?
+WTF is going on w seek app images jesus
 make dots draw below toggle button on mobile
-check on wont judge videos sound? not autoplaying
+add sound toggle for intro videos
 split climate week img in two
 add fl alligator ripple cover
-add favicon
+add mouse?
 LAUNCH???

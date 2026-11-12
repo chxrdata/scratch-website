@@ -14,6 +14,9 @@ let isMobile = false;
 if (window.matchMedia("(any-hover:none)").matches) {
     isMobile = true;
 }
+if (!(localStorage.getItem("viewPreference"))) {
+    localStorage.setItem("viewPreference", "tree");
+};
 
 async function readWorkJSON(filePath) {
     try {
@@ -1050,6 +1053,8 @@ readWorkJSON('assets/work.json')
         function switchView() {
             if (treeFormContainer.style.display !== "none") {
 
+                localStorage.setItem("viewPreference", "list");
+
                 listSection.style.display = "flex";
                 setTimeout(() => {
                     listSection.style.opacity = 1;
@@ -1070,6 +1075,8 @@ readWorkJSON('assets/work.json')
 
 
             } else {
+
+                localStorage.setItem("viewPreference", "tree");
 
                 drawOnBtnClick();
 
@@ -1107,15 +1114,36 @@ readWorkJSON('assets/work.json')
         // CHECK PASTINTRO
 
         if (localStorage.getItem("pastIntro") === "true") {
+
             introAnimationContainer.style.display = "none";
-            drawOnBtnClick(localStorage.getItem('currentType'));
+
             const mobileAbout = document.getElementById('home-about-mobile');
-            treeFormContainer.style.opacity = 1;
-            desktopAbout.style.opacity = 1;
-            toggleViewBtnMobile.style.opacity = 1;
             mobileAbout.style.opacity = 0;
             introAnimationContainer.style.display = 'none';
             introAnimationContainer.style.opacity = 0;
+            toggleViewBtnMobile.style.opacity = 1;
+            desktopAbout.style.opacity = 1;
+
+            if (localStorage.getItem('viewPreference') === "list") {
+                listSection.style.display = "flex";
+                listSection.style.opacity = 1;
+
+                treeFormContainer.style.opacity = 0;
+                treeLinksContainer.style.opacity = 0;
+                canvas.style.opacity = 0;
+
+                treeFormContainer.style.display = "none";
+                treeLinksContainer.style.display = "none";
+                canvas.style.display = "none";
+
+                toggleBtnTextDesktop.innerText = ' List View';
+                toggleBtnTextMobile.innerText = ' List View';
+            } else {
+
+                drawOnBtnClick(localStorage.getItem('currentType'));
+
+                treeFormContainer.style.opacity = 1;
+            }
         } else {
             introAnimationContainer.style.opacity = 1; // so that it doesn't show for a brief second on reload
         };

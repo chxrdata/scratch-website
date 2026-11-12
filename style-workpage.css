@@ -33,6 +33,18 @@ a {
     margin: 0;
 }
 
+#work-intro a,
+#work-intro-mobile a {
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+#work-intro a:first-of-type,
+#work-intro-mobile a:first-of-type {
+    text-decoration: none;
+    margin-left: 0;
+}
+
 #intro-about-container {
     margin-top: 40px;
 }

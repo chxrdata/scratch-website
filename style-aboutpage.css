@@ -6,6 +6,11 @@ a {
     color: var(--primary-color);
 }
 
+canvas {
+    z-index: 2;
+    pointer-events: none;
+}
+
 #about-text-container {
     position: absolute;
     top: 0;
@@ -16,25 +21,27 @@ a {
     width: 40dvw;
     height: 100dvh;
     padding-right: 2rem;
-    z-index: 2;
 }
 
 #about-text {
     max-width: 400px;
 }
 
-#draw-btn, #clear-btn {
+#draw-btn,
+#clear-btn {
     display: inline-block;
     margin-right: 10px;
+    margin-top: 10px;
     padding: 2px 0;
     width: 7rem;
     border: 1.5px solid var(--primary-color);
     cursor: pointer;
     text-align: center;
-    transition: all 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-#draw-btn:hover, #clear-btn:hover {
+#draw-btn:hover,
+#clear-btn:hover {
     background-color: var(--primary-color);
     color: var(--background-color)
 }
@@ -64,6 +71,6 @@ canvas {
 
     canvas {
         width: 100dvw;
-            left: 0;
+        left: 0;
     }
 }
