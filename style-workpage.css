@@ -152,7 +152,18 @@ a {
     margin-left: 0.5rem;
 }
 
+#footer-info {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
+}
+
 @media screen and (max-width: 767px) {
+
+    body {
+        padding-top: 10%;
+    }
+
     #desktop-view {
         display: none;
     }

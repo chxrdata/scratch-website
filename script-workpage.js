@@ -278,7 +278,7 @@ readWorkJSON('assets/work.json')
         const copyright = document.createElement("div");
         copyright.innerText = "© 2026 Del Cro Halter"
         const socialLinks = document.createElement("div");
-        socialLinks.innerText = "social links";
+        socialLinks.innerText = "del@delcro.co";
         footerInfo.append(copyright, socialLinks);
 
         footer.append(footerBtns, footerInfo);
@@ -298,7 +298,3 @@ readWorkJSON('assets/work.json')
         })
 
     })
-
-// TODO:
-// fix height of description paragraphs
-// fix error on intro images all fitting in screen

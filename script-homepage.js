@@ -944,6 +944,10 @@ readWorkJSON('assets/work.json')
                 subtitle.classList.add('list-link-subtitle');
                 subtitle.innerText = work.kind;
 
+                const blurb = document.createElement ('p');
+                blurb.classList.add('list-link-blurb');
+                blurb.innerText = work.blurb;
+
                 let tags = [];
                 for (const tag of work.tags) {
                     if (tag !== "all") {
@@ -955,7 +959,7 @@ readWorkJSON('assets/work.json')
                 tagsContainer.classList.add('list-link-tags');
                 tagsContainer.innerHTML = tagsStr;
 
-                listLinkBtn.append(title, subtitle, tagsContainer);
+                listLinkBtn.append(title, subtitle, tagsContainer, blurb);
                 listContainer.append(listLinkBtn);
 
                 if (!isMobile) {

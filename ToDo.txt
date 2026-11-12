@@ -1,20 +1,12 @@
 HOMEPAGE:
-change tree rewriting to happen before final tree is drawn
 * save choice as local variable
 add blurb to list view
 
 WORKPAGE:
 add fl alligator ripple cover
-no small image for climate week?
 update seek video
-add description links
-
-video not stretching, check keepintouch
 add sound button to intro images.. ugh
-
-images resizing weird on mobile, not going to edge
 videos dont autoplay on mobile
-add fullscreen toggle for mobile
 
 Make mobile hero image the texture?
 
@@ -31,6 +23,5 @@ PRIORITY:
 split climate week img in two
 videos dont autoplay on mobile
 add fl alligator ripple cover
-add blurb to list view
 add favicon
 LAUNCH???
