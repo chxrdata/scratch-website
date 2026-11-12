@@ -492,8 +492,16 @@ readWorkJSON('assets/work.json')
 
                 // Drawing buttons
 
-                const linkBtnHeight = 90; // these come from style.css
-                const linkBtnWidth = 60;
+                let linkBtnHeight = 90; // these come from style.css
+                let linkBtnWidth = 60;
+                if (type === 'all' || onMobile) {
+                    linkBtnHeight = 20;
+                    linkBtnWidth = 20;
+                } else if (type === 'all') {
+                    linkBtnHeight = 32;
+                    linkBtnWidth = 32;
+                };
+
                 let outerBoundsRect = {};
                 const formTopBound = document.getElementById('form-header').getBoundingClientRect().top;
                 const padding = 20 // in pixels
