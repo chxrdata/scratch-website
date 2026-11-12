@@ -691,8 +691,8 @@ readWorkJSON('assets/work.json')
 
                     await delay(40);
 
-                    // darken on hover
-                    if (Object.hasOwn(work, "img-link")) {
+                    // hover state
+                    if (Object.hasOwn(work, "img-link") && !isMobile) {
                         newLinkBtn.addEventListener('mouseenter', (e) => {
 
                             // change backgroud image
@@ -955,46 +955,48 @@ readWorkJSON('assets/work.json')
                 tagsContainer.classList.add('list-link-tags');
                 tagsContainer.innerHTML = tagsStr;
 
-                listLinkBtn.addEventListener('mouseenter', () => {
-
-                    // turn everything white
-                    // copied from above "turn everything white"
-
-                    textureContainer.style.backgroundImage = `url(assets/textures/tx-${work.id}.png)`;
-                    textureContainer.style.opacity = 1;
-
-                    desktopAbout.style.opacity = 0;
-                    listMenu.style.opacity = 0;
-                    toggleViewBtnMobile.style.opacity = 0;
-                    listLinkBtn.classList.add('white');
-
-                    const listLinkBtns = document.querySelectorAll('.list-link-btn');
-                    for (const b of listLinkBtns) {
-                        if (!(b.matches(':hover'))) {
-                            b.style.opacity = 0;
-                        }
-                    };
-                });
-
-                listLinkBtn.addEventListener('mouseleave', () => {
-
-                    // return original colors
-                    // copied from above "return original colors"
-
-                    textureContainer.style.opacity = 0;
-                    desktopAbout.style.opacity = 1;
-                    listMenu.style.opacity = 1;
-                    toggleViewBtnMobile.style.opacity = 1;
-                    listLinkBtn.classList.remove('white');
-
-                    const listLinkBtns = document.querySelectorAll('.list-link-btn');
-                    for (const b of listLinkBtns) {
-                        b.style.opacity = 1;
-                    };
-                });
-
                 listLinkBtn.append(title, subtitle, tagsContainer);
                 listContainer.append(listLinkBtn);
+
+                if (!isMobile) {
+                    listLinkBtn.addEventListener('mouseenter', () => {
+
+                        // turn everything white
+                        // copied from above "turn everything white"
+
+                        textureContainer.style.backgroundImage = `url(assets/textures/tx-${work.id}.png)`;
+                        textureContainer.style.opacity = 1;
+
+                        desktopAbout.style.opacity = 0;
+                        listMenu.style.opacity = 0;
+                        toggleViewBtnMobile.style.opacity = 0;
+                        listLinkBtn.classList.add('white');
+
+                        const listLinkBtns = document.querySelectorAll('.list-link-btn');
+                        for (const b of listLinkBtns) {
+                            if (!(b.matches(':hover'))) {
+                                b.style.opacity = 0;
+                            }
+                        };
+                    });
+
+                    listLinkBtn.addEventListener('mouseleave', () => {
+
+                        // return original colors
+                        // copied from above "return original colors"
+
+                        textureContainer.style.opacity = 0;
+                        desktopAbout.style.opacity = 1;
+                        listMenu.style.opacity = 1;
+                        toggleViewBtnMobile.style.opacity = 1;
+                        listLinkBtn.classList.remove('white');
+
+                        const listLinkBtns = document.querySelectorAll('.list-link-btn');
+                        for (const b of listLinkBtns) {
+                            b.style.opacity = 1;
+                        };
+                    });
+                }
 
                 // color btns
 

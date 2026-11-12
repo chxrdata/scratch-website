@@ -22,15 +22,17 @@ ABOUTPAGE:
 Add clear about text btn on mobile?
 
 OTHER:
+add mouse
 make resources page
 improve work images
 
 PRIORITY:
-Mobile all tree still not working
 mobile hover state doesnt clear.. maybe just remove if on mobile device
 no small image for climate week?
 add description links
 images resizing weird on mobile, not going to edge
 videos dont autoplay on mobile
 add fl alligator ripple cover
+add blurb to list view
+add favicon
 LAUNCH???

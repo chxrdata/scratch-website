@@ -477,8 +477,8 @@ form div:nth-of-type(2) {
     gap: 1rem;
     overflow-y: scroll;
     overflow-x: hidden;
-    padding: 6% 0 1rem 0;
-    mask-image: linear-gradient(transparent, black 6%);
+    padding: 3% 0 1rem 0;
+    mask-image: linear-gradient(transparent, black 3%);
     transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
