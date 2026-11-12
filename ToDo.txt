@@ -20,6 +20,10 @@ improve work images
 zoom image and video on click
 
 PRIORITY:
+fix image size on mobile to not use dvh because it changes on scroll
+make dots draw below toggle button on mobile
+dont draw abt tree of page load mobile
+check on wont judge videos sound? not autoplaying
 split climate week img in two
 videos dont autoplay on mobile
 add fl alligator ripple cover

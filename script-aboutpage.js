@@ -5,6 +5,14 @@ const canvas = document.getElementById("treeCanvas");
 const ctx = canvas.getContext("2d");
 let drawTimer;
 let isLoopRunning = true;
+let isSmallScreen = false;
+if (window.innerWidth <= 767) {
+    isSmallScreen = true;
+}
+let isMobile = false;
+if (window.matchMedia("(any-hover:none)").matches) {
+    isMobile = true;
+}
 
 // delay
 
@@ -379,7 +387,9 @@ function redraw(delay) {
     }, delay);
 }
 
-redraw(0);
+if (!isSmallScreen) {
+    redraw(0);
+}
 
 const drawBtn = document.getElementById('draw-btn');
 const clearBtn = document.getElementById('clear-btn');
