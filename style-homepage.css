@@ -365,11 +365,6 @@ form div:nth-of-type(2) {
     height: 30px;
 }
 
-.all-btn.mobile {
-    width: 20px;
-    height: 20px;
-}
-
 .tree-link-btn-icon {
     transition: transform 0.3s;
 }

@@ -494,10 +494,7 @@ readWorkJSON('assets/work.json')
 
                 let linkBtnHeight = 90; // these come from style.css
                 let linkBtnWidth = 60;
-                if (type === 'all' || onMobile) {
-                    linkBtnHeight = 20;
-                    linkBtnWidth = 20;
-                } else if (type === 'all') {
+                if (type === 'all') {
                     linkBtnHeight = 32;
                     linkBtnWidth = 32;
                 };
@@ -560,14 +557,13 @@ readWorkJSON('assets/work.json')
                         randomE = eRange[Math.floor(Math.random() * eRange.length)];
 
                         newRect = {
-                            bottom: randomE.yCoord + linkBtnHeight,
+                            bottom: randomE.yCoord + (linkBtnHeight / 2),
                             left: randomE.xCoord,
-                            right: randomE.xCoord + linkBtnWidth,
+                            right: randomE.xCoord + (linkBtnWidth / 2),
                             top: randomE.yCoord
                         };
 
                         if (overlapAttempts < maxOverlapAttempts) { // only checks overlap if under maxAttempts
-                            overlapAttempts++;
                             for (const drawnRect of btnRectArr) {
                                 if (!(newRect.right < drawnRect.left || newRect.left > drawnRect.right || newRect.bottom < drawnRect.top || newRect.top > drawnRect.bottom)) {
                                     isOverlapping = true;
@@ -575,6 +571,7 @@ readWorkJSON('assets/work.json')
                                     isOverlapping = false;
                                 }
                             };
+                            overlapAttempts++;
                         }
 
                     } while (isOverlapping && overlapAttempts < maxOverlapAttempts);
